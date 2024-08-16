@@ -1,0 +1,24 @@
+/*-------------------------------폰트 모음-----------------------------------*/
+/* 관리자 메뉴 바 */
+/* 공통 스타일 */
+.admin-menu-item-home,
+.admin-menu-item-product,
+.admin-menu-item-delivery,
+.admin-menu-customer,
+.admin-menu-question,
+.admin-menu-setting {
+    cursor: pointer;
+    transition: background-color 1s linear; /* 배경색 전환을 위한 트랜지션 */
+}
+
+/* Hover 상태에서 배경색 변경 */
+.admin-menu-item-home:hover,
+.admin-menu-item-product:hover,
+.admin-menu-item-delivery:hover,
+.admin-menu-customer:hover,
+.admin-menu-question:hover,
+.admin-menu-setting:hover {
+    border-radius: 2em;
+    padding:0.6em 0 0.6em 0;
+    background-color: #0d7732; /* 진한 녹색으로 변경 */
+}

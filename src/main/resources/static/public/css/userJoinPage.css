@@ -1,0 +1,123 @@
+/* ---------- 폰트 모음 ---------- */
+
+.visible {
+    visibility: visible;
+}
+.hidden {
+    visibility: hidden;
+}
+
+.nato-sans{
+    font-family: "Noto Sans KR", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 400;
+    font-style: normal;
+}
+
+.nothing-you-could-do-regular {
+    font-family: "Nothing You Could Do", cursive;
+    font-weight: 500;
+    font-style: normal;
+}
+.roboto-regular {
+    font-family: "Roboto", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+}
+
+/* -------------------------------*/
+
+.row [class^="col-"] {
+    padding: 0 !important;
+}
+@media (max-width: 1200px) {
+    .logo_explain {
+        font-size: 1em !important;
+    }
+}
+@media (min-width: 1500px){
+    .logo_explain{
+        font-size: 2em !important;
+    }
+}
+@media (min-width: 2500px) {
+    .logo_explain{
+        font-size: 5em !important;
+    }
+}
+
+.join-input-container {
+    position: relative;
+    margin-top: 3.6em !important;
+}
+
+.join-input {
+    border: none;
+    border-bottom: 1px solid black;
+    font-size: 18px;
+    outline: none;
+    width: 100%;
+}
+
+.join-input-label{
+    position: absolute;
+    top:-35px;
+    padding:5px;
+    color: rgba(85, 126, 107, 0.57);
+    font-weight: bold
+}
+
+.sex-radio-label{
+    transition: 1.5s ease;
+    display: flex ;
+    cursor: pointer;
+    width:80%;
+    height: 80%;
+    border:none;
+    border-radius: 12px;
+    align-items: center;
+    justify-content: center;
+    font-weight:bold;
+    font-size:1em;
+    color:white;
+    background-color:rgba(85, 126, 107, 0.57);
+    padding:0.9em;
+}
+
+.sex-radio-label-changed{
+    display: flex ;
+    cursor: pointer;
+    width:80%;
+    height: 80%;
+    border:none;
+    border-radius: 12px;
+    align-items: center;
+    justify-content: center;
+    font-weight:bold;
+    font-size:1em;
+    color:white;
+    background-color:#0E6D62;
+    padding:0.9em;
+}
+.join-button-design{
+    width:50%;
+    background-color:white;
+    color:#0E6D62;
+    border:0.1em solid #0E6D62;
+    padding:0.5em;
+    font-weight: bold;
+    border-radius: 0.5em;
+    font-size:1.2em;
+}
+.join-button-design:hover{
+    background-color: black;
+    color:white;
+    border:0.1em solid black;
+}
+
+
+.hidden-radio {
+    position:absolute;
+    opacity: 0;
+    pointer-events: none;
+}

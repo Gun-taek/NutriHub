@@ -1,0 +1,75 @@
+<link rel="stylesheet" th:href="@{/public/css/navbar.css(version=${#dates.format(#dates.createNow(), 'yyyyMMddHHmmss')})}" />
+<!-- src/main/resources/templates/fragments/navbar.html -->
+<div th:fragment="navbar" >
+            <!-- 회사 로고 -->
+            <div class="row" >
+                <div class="col d-flex justify-content-center">
+                    <img th:src="@{/public/image/nutrihubCompanyLogo/MainLogo.png}"  alt=""
+                         style = "height: 15vh; cursor:pointer" th:onclick="|location.href='@{./MainPage}'|">
+                </div>
+            </div>
+            <!-- 관리자 메뉴 바 -->
+            <div class="row" style="padding-left:0.8em">
+                <div class="col" style="background-color: #599468; border: solid 0.5em #599468; ">
+
+                    <div class="row admin-menu-item-home" style="margin-top:2em; border-radius: 2em" th:onclick="|location.href='@{./MainPage}'|" >
+                        <div class="col-3 d-flex justify-content-end align-items-center" style="padding:0 0 0 2em;">
+                            <img th:src="@{/public/image/adminMainPage/home_logo.png}" alt="" style="cursor: pointer;width:100%; height: auto;">
+                        </div>
+                        <div class="col-8 d-flex justify-content-center align-items-center text-center">
+                            <p class="noto-sans mb-0" style="color:white; font-size: 1.2em ">홈</p>
+                        </div>
+                    </div>
+
+                    <div class="row admin-menu-item-product" style="margin-top:2em; align-items: center;border-radius: 2em;">
+                        <div class="col-3 d-flex justify-content-end align-items-center" style="padding:0 0 0 2em;">
+                            <img th:src="@{/public/image/adminMainPage/box_logo.png}" alt="" style="width:100%; height: auto;">
+                        </div>
+                        <div class="col-8 d-flex justify-content-center align-items-center text-center">
+                            <p class="noto-sans mb-0" style=" color:white; font-size: 1.2em " >상품 관리</p>
+                        </div>
+                    </div>
+
+                    <div class="row admin-menu-item-delivery" style="margin-top:2em; align-items: center;border-radius: 2em;">
+                        <div class="col-3 d-flex justify-content-end align-items-center" style="padding:0 0 0 2em; border-radius: 2em">
+                            <img th:src="@{/public/image/adminMainPage/truck_logo.png}" alt="" style="width:100%; height: auto;">
+                        </div>
+                        <div class="col-8 d-flex justify-content-center align-items-center text-center">
+                            <p class="noto-sans mb-0" style="color:white; font-size: 1.2em ">배송 관리</p>
+                        </div>
+                    </div>
+
+
+                    <div class="row admin-menu-customer" style="margin-top:2em; align-items: center;border-radius: 2em;">
+                        <div class="col-3 d-flex justify-content-end align-items-center" style="padding:0 0 0 2em; border-radius: 2em">
+                            <img th:src="@{/public/image/adminMainPage/user_logo.png}" alt="" style="width:75%; height: auto;">
+                        </div>
+                        <div class="col-8 d-flex justify-content-center align-items-center text-center">
+                            <p class="noto-sans mb-0" style="color:white; font-size: 1.2em ">고객 관리</p>
+                        </div>
+                    </div>
+
+
+                    <div class="row admin-menu-question" style="margin-top:14em;border-radius: 2em;">
+                        <div class="col-3 d-flex justify-content-end align-items-center" style="padding:0 0 0 2em; border-radius: 2em">
+                            <img th:src="@{/public/image/adminMainPage/questionMark_logo.png}" alt="" style="width:75%; height: auto;">
+                        </div>
+                        <div class="col-8 d-flex justify-content-center align-items-center text-center">
+                            <p class="noto-sans mb-0" style="color:white; font-size: 1.2em ">사용자 지정</p>
+                        </div>
+                    </div>
+
+
+                    <div class="row admin-menu-setting" style="margin-top:2em; align-items: center;border-radius: 2em;">
+                        <div class="col-3 d-flex justify-content-end align-items-center" style="padding:0 0 0 2em; border-radius: 2em">
+                            <img th:src="@{/public/image/adminMainPage/setting_logo.png}" alt="" style="width:75%; height: auto;">
+                        </div>
+                        <div class="col-8 d-flex justify-content-center align-items-center text-center">
+                            <p class="noto-sans mb-0" style="color:white; font-size: 1.2em ">설정</p>
+                        </div>
+                    </div>
+
+                    <div class="row" style="height: 5em"></div>
+                </div>
+            </div>
+        </div>

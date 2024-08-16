@@ -1,0 +1,161 @@
+body{
+    margin:0px;
+}
+
+.navbar{
+    background-color: #599468;
+
+}
+
+.navbarSearch:focus{
+    outline:none;
+}
+
+.mainLogoImage{
+    height: 16em;
+}
+
+
+/*-------------------------------폰트 모음-----------------------------------*/
+
+.noto-sans{
+       font-family: "Noto Sans KR", sans-serif;
+       font-optical-sizing: auto;
+       font-weight: 400;
+       font-style: normal;
+}
+.single-day-regular {
+    font-family: "Single Day", cursive;
+    font-weight: 400;
+    font-style: normal;
+}
+/* -- 가격 폰트-- */
+.teko {
+    font-family: "Teko", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 400;
+    font-style: normal;
+}
+/*-----------------------------------------------------------------------*/
+.login-icon {
+    height: 6.5vh;
+    cursor: pointer;
+}
+.login-icon-wrapper{
+    display: flex;
+    align-items: center; /* 수직 정렬 */
+    justify-content: center; /* 수평 정렬 */
+    margin:0;
+    padding:0;
+}
+
+.navbarSearch {
+      border-radius: 1em;
+      border: none;
+      width: 75%;
+      font-size: 1.2em;
+      height: 2em;
+      padding-left: 3.8em;
+
+      transition: all 0.5s;
+  }
+
+.expanded-input {
+    width: 100% !important;
+    font-size: 1.5em !important;
+    height: 1.5em !important;
+}
+
+.reading-glasses-wrapper {
+    display: flex;
+    align-items: center;
+    position: relative;
+    width: 100%;
+}
+
+.reading-glasses {
+    position: absolute;
+    height: 3.2vh;
+    left: 0.5em;
+    cursor: pointer;
+    text-align: center;
+}
+
+
+/* ----------------주간 브랜드 슬라이드 CSS-------------------*/
+.weekly-brand-wrap {
+
+    width: 100%;
+    margin: 0 auto;
+    position: relative;
+    overflow: hidden; /* 슬라이드 영역 밖의 내용 숨기기 */
+}
+
+.weekly-brand-slider {
+    display: flex; /* Flexbox로 수평 정렬 */
+    transition: 0.5s;
+    width: 100%; /* 부모의 너비와 동일하게 설정 */
+}
+
+.weekly-brand-slider .slider {
+    display: flex; /* Flexbox로 수평 정렬 */
+    transition: 0.5s;
+    padding:0;
+    margin:0;
+}
+/* 슬라이드할 브랜드 로고 이미지 */
+.weekly-brand-slider .slider img {
+
+    padding:0.3em 0.8em 0.3em 0.8em;
+    border:solid 0.1em #e0e0e0;
+    border-radius: 1em;
+    width: 45%;
+    height: auto;
+    cursor: pointer !important;
+}
+
+
+/* 수직 수평 정렬 */
+.weekly-brand-slider .slider li{
+    margin: 0;
+    padding: 0;
+    flex: 0 0 20%; /* 각 li의 너비를 슬라이드 영역의 1/5로 설정 */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+}
+
+.weekly-prev-button {
+    position: absolute;
+    top: 82%; /* 부모 요소 기준으로 수직 중앙 정렬 */
+    left: 60%; /* 부모 요소 기준으로 수평 중앙 정렬 */
+    transform: translate(-82%, -60%); /* 수평 및 수직 중앙 정렬 */
+}
+.weekly-next-button{
+    position: absolute;
+    top: 82%; /* 부모 요소 기준으로 수직 중앙 정렬 */
+    left: 60%; /* 부모 요소 기준으로 수평 중앙 정렬 */
+    transform: translate(-82%, -60%); /* 수평 및 수직 중앙 정렬 */
+}
+
+.weekly-prev-button > a {
+    display: block; /* a 태그를 블록 레벨 요소로 설정 */
+    width:3%;
+    height: 100%;
+}
+.weekly-next-button > a {
+    display: block; /* a 태그를 블록 레벨 요소로 설정 */
+    width:3%;
+    height: 100%;
+}
+
+.weekly-prev-button img {
+    width: 85%; /* 원하는 너비로 설정 */
+    height: auto; /* 비율 유지 */
+}
+.weekly-next-button img{
+    width: 85%; /* 원하는 너비로 설정 */
+    height: auto; /* 비율 유지 */
+}
+/* -------------------------------------------------------*/

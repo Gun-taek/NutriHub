@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.nutrihub.user.mapper.UserSqlMapper">
+
+    <!-- 회원가입 -->
+    <insert id="joinProcess">
+        INSERT INTO user (user_id, user_pw, sex)
+        VALUES (#{user_id}, #{user_pw}, #{sex})
+    </insert>
+
+    <!-- 로그인 -->
+    <select id = "findUserByIdPw" resultType = "com.nutrihub.user.dto.UserDto">
+          SELECT * FROM user
+          WHERE user_id = #{user_id}
+          AND user_pw = #{user_pw}
+    </select>
+
+    <select id ="getIdList" resultType="com.nutrihub.user.dto.UserDto">
+        SELECT * FROM user;
+    </select>
+
+
+
+
+</mapper>

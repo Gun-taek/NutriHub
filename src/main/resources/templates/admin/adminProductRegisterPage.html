@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" th:href="@{/public/css/adminProductRegisterPage.css(version=${#dates.format(#dates.createNow(), 'yyyyMMddHHmmss')})}" />
+    <link rel="stylesheet" th:href="@{/public/css/navbar.css(version=${#dates.format(#dates.createNow(), 'yyyyMMddHHmmss')})}" />
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Single+Day&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100..900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Teko:wght@300..700&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Orbit&display=swap" rel="stylesheet">
+
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <title>adminMainPage</title>
+    <style>
+    </style>
+</head>
+<body style="margin:0; padding:0">
+<div class="container-fluid">
+    <div class="row">
+        <!-- 좌측 네비바 -->
+        <div class="col-2 m-0" style="padding-left: 0" >
+            <div th:insert="admin/navbar :: navbar"></div>
+        </div>
+        <!-- 본문 -->
+        <div class="col">
+
+            <div class="row " style="height:15vh;">
+                <div class="col-2 d-flex justify-content-end align-items-center">
+
+                    <img th:src="@{/public/image/adminMainPage/store_logo.png}" alt="" style="height:3.5vh">
+                </div>
+                <div class="col-3 d-flex align-items-center justify-content-start">
+                    <p class="orbit-regular mb-0" style="color:darkgray; font-size:1.2em; font-weight: 500;">상품 관리</p>
+                    <p class="orbit-regular mb-0" style="font-weight: bold;font-size:1.2em">&nbsp;&nbsp; > &nbsp;&nbsp;</p>
+                    <p class="orbit-regular mb-0" style="font-size:1.2em"> 상품 등록 </p>
+                </div>
+
+                <div class="col d-flex justify-content-end align-items-center">
+                    <span class="orbit-regular mb-0" style="font-size:1.2em; color:darkgray"> 로그아웃</span>&nbsp;
+                    <img th:src="@{/public/image/adminMainPage/logout_logo.png}" alt="" style="height:3.5vh">
+                </div>
+                <div class="col-1"></div>
+            </div>
+            <!-- 구분선 -->
+            <div class="row" style="border-top: solid 0.2em gray; background-color: #F1F3F5">
+                <div class="col" style="padding:2em;">
+                    <div class="row border" style="background-color: white;">
+                        <div class="col p-4">
+                            <span class="noto-sans" style="font-size: 1.6em ; font-weight: bold">상품 등록</span>
+                        </div>
+                    </div>
+
+                    <div class="row" style="border-left: 1px solid #DEE2E6;border-right: 1px solid #DEE2E6;">
+                        <div class="col p-4">
+                            <div class="row">
+                                <div class="col">
+                                    <span class="noto-sans" style="font-size:1.1em; color:dimgray">기존 상품 불러오기</span>
+                                </div>
+                            </div>
+
+                            <div class="row pt-3">
+                                <div class="col">
+                                    <input type="text" placeholder="기존 상품명 또는 상품번호 입력"
+                                           style="border-radius: 0.5em; color:gray; border:none; width:40%; height: 2.5em">
+                                </div>
+                            </div>
+
+
+                            <div class="row mt-5">
+                                <div class="col">
+                                    <span class="noto-sans" style="font-size: 1.6em ; font-weight: bold">카테고리</span>
+                                </div>
+                            </div>
+                            <div class="row mt-4 border" style="height:14vh">
+                                <div class="col-2 pt-4 ps-5 " style="border-right: 1px solid #DEE2E6;">
+                                    <span class="noto-sans" style="font-size: 1em; color:darkgray;font-weight: bold ">
+                                        관리카테고리
+                                    </span>
+                                    <span class="noto-sans" style="font-size: 1em; color:orangered;font-weight: bold" >*</span>
+                                </div>
+                                <div class="col ps-4" style="background-color: white">
+                                    
+                                    <input class="mt-3 ps-4" type="text" placeholder="카테고리명 입력"
+                                           style="width:50%;height:30% ;border-radius:0.5em; border: 1px solid darkgray;">
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- 부트스트랩-->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+<!-- JQuery-->
+<script>
+    document.addEventListener('DOMContentLoaded',function(){
+
+        const adminMenuItems = $('.admin-menu-items');
+
+    });
+
+</script>
+
+</body>
+</html>
