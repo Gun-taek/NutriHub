@@ -25,5 +25,45 @@
     font-style: normal;
 }
 
+
+.menu, .submenu {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+.menu > li {
+    position: relative;
+}
+.submenu {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background-color: white;
+    border: 1px solid #ddd;
+    padding: 0;
+    margin: 0;
+}
+.menu > li:hover .submenu {
+    display: block;
+}
+.submenu a {
+    display: block;
+    padding: 10px;
+    text-decoration: none;
+    color: #333;
+}
+.submenu a:hover {
+    background-color: #f0f0f0;
+}
+/* 대표이미지 기본 버튼 없애기*/
+.Representative-image{
+    display:none;
+}
+
+.detailed_image{
+    display:none;
+}
+
 /* 관리자 메뉴 바 */
 /* 공통 스타일 */

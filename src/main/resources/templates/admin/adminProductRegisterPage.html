@@ -32,7 +32,7 @@
         <!-- 본문 -->
         <div class="col">
 
-            <div class="row " style="height:15vh;">
+            <div class="row" style="height:15vh;">
                 <div class="col-2 d-flex justify-content-end align-items-center">
 
                     <img th:src="@{/public/image/adminMainPage/store_logo.png}" alt="" style="height:3.5vh">
@@ -73,34 +73,170 @@
                                 </div>
                             </div>
 
-
                             <div class="row mt-5">
                                 <div class="col">
                                     <span class="noto-sans" style="font-size: 1.6em ; font-weight: bold">카테고리</span>
                                 </div>
                             </div>
+
                             <div class="row mt-4 border" style="height:14vh">
-                                <div class="col-2 pt-4 ps-5 " style="border-right: 1px solid #DEE2E6;">
+                                <div class="col-2 pt-0 d-flex justify-content-center align-items-center" style="border-right: 1px solid #DEE2E6; padding-top:1.9em;">
                                     <span class="noto-sans" style="font-size: 1em; color:darkgray;font-weight: bold ">
                                         관리카테고리
                                     </span>
                                     <span class="noto-sans" style="font-size: 1em; color:orangered;font-weight: bold" >*</span>
                                 </div>
-                                <div class="col ps-4" style="background-color: white">
-                                    
-                                    <input class="mt-3 ps-4" type="text" placeholder="카테고리명 입력"
-                                           style="width:50%;height:30% ;border-radius:0.5em; border: 1px solid darkgray;">
 
+                                <div class="col-4 ps-4" style="background-color: white">
+<!--                                    <input class="mt-3 ps-4" type="text" placeholder="카테고리명 입력"-->
+<!--                                           style="width:50%;height:30% ;border-radius:0.5em; border: 1px solid darkgray;">-->
+                                    <label for="lang"></label>
+                                    <select class="form-select" name="languages" id="lang">
+                                        <option value="" disabled selected>선택해주세요</option>
+                                        <option value="상품종류1">상품종류1</option>
+                                        <option value="상품종류2">상품종류2</option>
+                                        <option value="상품종류3">상품종류3</option>
+                                        <option value="상품종류4">상품종류4</option>
+                                        <option value="상품종류5">상품종류5</option>
+                                        <option value="상품종류6">상품종류6</option>
+                                    </select>
+                                </div>
+                                <div class="col" style="background-color: white"></div>
+                            </div>
+
+                            <div class="row mt-5">
+                                <div class="col">
+                                    <span class="noto-sans" style="font-size: 1.6em ; font-weight: bold">상품 정보</span>
                                 </div>
                             </div>
+                            <div class="row mt-4 border" style="height:10vh">
+                                <div class="col-2 pt-0 d-flex justify-content-center align-items-center" style="border-right: 1px solid #DEE2E6; padding-top:1.9em;">
+                                  <span class="noto-sans" style="font-size: 1em; color:darkgray;font-weight: bold ">
+                                        상품명
+                                    </span>
+                                    <span class="noto-sans" style="font-size: 1em; color:orangered;font-weight: bold" >*</span>
+                                </div>
+
+                                <div class="col-4 ps-4 d-flex justify-content-center align-items-center" style="background-color: white">
+                                        <input class="form-control" placeholder="상품명 입력">
+                                </div>
+                                <div class="col"style="background-color: white"></div>
+                            </div>
+
+                            <div class="row  border-bottom border-start border-end" style="height:10vh">
+                                <div class="col-2 pt-0 d-flex justify-content-center align-items-center" style="border-right: 1px solid #DEE2E6; padding-top:1.9em;">
+                                  <span class="noto-sans" style="font-size: 1em; color:darkgray;font-weight: bold ">
+                                        브랜드
+                                    </span>
+                                    <span class="noto-sans" style="font-size: 1em; color:orangered;font-weight: bold" >*</span>
+                                </div>
+
+                                <div class="col-4 ps-4 d-flex justify-content-center align-items-center" style="background-color: white">
+                                    <input class="form-control" placeholder="브랜드명 입력">
+                                </div>
+                                <div class="col"style="background-color: white"></div>
+                            </div>
+
+                            <div class="row mt-5">
+                                <div class="col">
+                                    <span class="noto-sans" style="font-size: 1.6em ; font-weight: bold">대표 가격 정보</span>
+                                </div>
+                            </div>
+                            <div class="row mt-4 border" style="height:13vh">
+                                <div class="col-2 pt-0 d-flex justify-content-center align-items-center" style="border-right: 1px solid #DEE2E6; padding-top:1.9em;">
+                                    <span class="noto-sans" style="font-size: 1em; color:darkgray; font-weight: bold">
+                                        대표가격 정보
+                                    </span>
+                                    <span class="noto-sans" style="font-size: 1em; color:orangered; font-weight: bold">*</span>
+                                </div>
+
+                                <div class="col-3 ps-4 pt-3 d-flex flex-column " style="background-color: white">
+                                    <label for="price1" class="noto-sans" style="margin-bottom: 0.5em; font-size: 1em; color: black; font-weight: bold">정상가
+                                        <span style="color:gray"><i class="bi bi-info-circle"></i></span></label>
+                                    <!-- 원을 일직선으로 보이게 하기 위하여 d-flex -> display:flex 적용-->
+                                    <div class="d-flex align-items-center">
+                                        <input id="price1" class="form-control w-50" style="width: auto;" placeholder="">
+                                        <span style="margin-left: 0.5em;">원</span>
+                                    </div>
+                                </div>
+
+                                <div class="col-3 ps-4 pt-3 d-flex flex-column " style="background-color: white">
+                                    <label for="price2" class="noto-sans" style="margin-bottom: 0.5em; font-size: 1em; color: black; font-weight: bold">판매가
+                                        <span style="color:gray"><i class="bi bi-info-circle"></i></span></label>
+                                    <div class="d-flex align-items-center">
+                                        <input id="price2" class="form-control w-50" style="width: auto;" placeholder="">
+                                        <span style="margin-left: 0.5em;">원</span>
+                                    </div>
+                                </div>
+
+                                <div class="col-3 ps-4 pt-3 d-flex flex-column " style="background-color: white">
+                                    <label for="price3" class="noto-sans" style="margin-bottom: 0.5em; font-size: 1em; color: black; font-weight: bold">할인율</label>
+
+                                    <div class="d-flex align-items-center">
+                                        <input id="price3" class="form-control w-50" style="width: auto;" placeholder="">
+                                        <span style="margin-left: 0.5em;">%</span>
+                                    </div>
+                                </div>
+                                <div class="col" style="background-color: white"></div>
+
+                            </div>
+
+
+                            <div class="row mt-5">
+                                <div class="col">
+                                    <span class="noto-sans" style="font-size: 1.6em ; font-weight: bold">상품 이미지</span>
+                                </div>
+                            </div>
+
+                            <div class="row mt-4 border" style="height:14vh">
+                                    <div class="col-2 pt-0 d-flex justify-content-center align-items-center" style="border-right: 1px solid #DEE2E6; padding-top:1.9em;">
+                                        <span class="noto-sans" style="font-size: 1em; color:darkgray;font-weight: bold ">
+                                            대표 이미지
+                                        </span>
+                                        <span class="noto-sans" style="font-size: 1em; color:orangered;font-weight: bold" >*</span>
+                                    </div>
+                                    <div class="col ps-5 d-flex align-items-center" style="background-color: white">
+                                        <!-- 버튼을 라벨로 해주고 라벨이 대신 버튼이 되어줄것이다.-->
+                                        <label for="Representative-image">
+                                            <img th:src="@{/public/image/adminMainPage/photo_logo.png}"
+                                            style="width:auto; height: 10vh; cursor: pointer">
+                                        </label>
+                                        <input type="file" class="Representative-image" id="Representative-image"/>
+                                    </div>
+                            </div>
+
+                            <div class="row border-start border-end border-bottom" style="height:14vh">
+                                <div class="col-2 pt-0 d-flex flex-column justify-content-center align-items-center" style="border-right: 1px solid #DEE2E6; padding-top:1.9em;">
+                                    <span class="noto-sans" style="font-size: 1em; color:darkgray;font-weight: bold;">
+                                        상세 이미지 <span class="noto-sans" style="font-size: 1em; color:orangered;font-weight: bold;">*</span>
+                                    </span>
+                                    <span style="font-size: 1em; color: dimgray;">(최대 3개 등록 가능)</span>
+                                </div>
+
+                                <div class="col ps-5 d-flex align-items-center" style="background-color: white;">
+                                    <!-- 버튼을 라벨로 해주고 라벨이 대신 버튼이 되어줄것이다.-->
+                                    <label for="detailed_image">
+                                        <img th:src="@{/public/image/adminMainPage/photo_logo.png}" style="width:auto; height: 10vh; cursor: pointer;">
+                                    </label>
+                                    <input type="file" multiple="multiple" class="detailed_image" id="detailed_image" style="display: none;">
+                                </div>
+                            </div>
+
+
+                            <div class="row mt-5">
+                                <div class="col">
+                                    <span class="noto-sans" style="font-size: 1.6em ; font-weight: bold">상품 설명</span>
+                                </div>
+                            </div>
+
+
+
+                        </div>
                         </div>
                     </div>
-
-
-
-                </div>
             </div>
         </div>
+    </div>
     </div>
 </div>
 <!-- 부트스트랩-->
