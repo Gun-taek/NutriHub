@@ -2,15 +2,15 @@
 <!-- src/main/resources/templates/fragments/navbar.html -->
 <div th:fragment="navbar" >
             <!-- 회사 로고 -->
-            <div class="row" >
+            <div class="row" style="position: sticky; top: 0;" >
                 <div class="col d-flex justify-content-center">
                     <img th:src="@{/public/image/nutrihubCompanyLogo/MainLogo.png}"  alt=""
                          style = "height: 15vh; cursor:pointer" th:onclick="|location.href='@{./MainPage}'|">
                 </div>
             </div>
             <!-- 관리자 메뉴 바 -->
-            <div class="row" style="padding-left:0.8em; height: 150vh">
-                <div class="col" style="background-color: #599468; border: solid 0.5em #599468; ">
+            <div class="row" style="padding-left:0.8em; position: sticky; top: 15vh;">
+                <div class="col" style="background-color: #599468; border: solid 0.5em #599468;">
 
                     <div class="row admin-menu-item-home" style="margin-top:2em; border-radius: 2em" th:onclick="|location.href='@{./MainPage}'|" >
                         <div class="col-3 d-flex justify-content-end align-items-center" style="padding:0 0 0 2em;">
