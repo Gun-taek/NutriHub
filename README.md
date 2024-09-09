@@ -1,2 +1,2 @@
-# NutriHub
- PersonalShoppingMallProject
+# 아직 구현을 못했습니다.
+issue에 진행과정을 올리겠습니다.
