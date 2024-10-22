@@ -268,9 +268,10 @@
                                 </div>
                             </div>
 
+                            <!-- ------------ 대표이미지 ------------ -->
                             <div class="row mt-4 border" style="height:14vh">
                                 <div class="col-2 pt-0 d-flex justify-content-center align-items-center" style="border-right: 1px solid #DEE2E6; padding-top:1.9em;">
-                                        <span class="noto-sans" style="font-size: 1em; color:darkgray;font-weight: bold ">
+                                        <span class="noto-sans" style="font-size: 1.1em; color:darkgray;font-weight: bold ">
                                             대표 이미지
                                         </span>
                                     <span class="noto-sans" style="font-size: 1em; color:orangered;font-weight: bold" >*</span>
@@ -281,16 +282,20 @@
                                         <img th:src="@{/public/image/adminMainPage/photo_logo.png}"
                                              style="width:auto; height: 10vh; cursor: pointer">
                                     </label>
-                                    <input type="file" class="Representative-image" id="Representative-image"/>
+                                    <!-- 대표 이미지 image만 accept 되게..... -->
+                                    <input type="file" accept="image/*" class="Representative-image" id="Representative-image"/>
                                 </div>
                             </div>
+                            <!-- ------------------------------------ -->
 
                             <div class="row border-start border-end border-bottom" style="height:14vh">
                                 <div class="col-2 pt-0 d-flex flex-column justify-content-center align-items-center" style="border-right: 1px solid #DEE2E6; padding-top:1.9em;">
-                                    <span class="noto-sans" style="font-size: 1em; color:darkgray;font-weight: bold;">
-                                        상세 이미지 <span class="noto-sans" style="font-size: 1em; color:orangered;font-weight: bold;">*</span>
+                                    <span class="noto-sans" style="font-size: 1.1em; color:darkgray;font-weight: bold;">
+                                        상세 이미지
+
+                                        <span class="noto-sans" style="align-items: center; display:inline;font-size: 0.9em; color:orangered;font-weight: bold;">*</span>   <span class="noto-sans" style="align-items: center; display:inline;font-size: 0.9em; color:orangered;font-weight: bold;">*</span>
                                     </span>
-                                    <span style="font-size: 1em; color: dimgray;">(최대 3개 등록 가능)</span>
+                                    <span class="orbit-regular" style="font-size: 0.8em; color: dimgray; ">(최대 3개 등록 가능)</span>
                                 </div>
 
                                 <div class="col ps-5 d-flex align-items-center" style="background-color: white;">
@@ -298,7 +303,7 @@
                                     <label for="detailed_image">
                                         <img th:src="@{/public/image/adminMainPage/photo_logo.png}" style="width:auto; height: 10vh; cursor: pointer;">
                                     </label>
-                                    <input type="file" multiple="multiple" class="detailed_image" id="detailed_image" style="display: none;">
+                                    <input type="file" multiple="multiple" accept="image/*" class="detailed_image" id="detailed_image" style="display: none;">
                                 </div>
                             </div>
 
@@ -378,6 +383,7 @@
                                     <span class="nato-sans">아직 등록된 반품/교환지가 없습니다. 먼저 반품/교환지를 등록해주세요</span>
                                 </div>
                                 <div class="col-2 d-flex justify-content-center align-items-center">
+                                    <!-- 반품/ 교환지 모달 등록 버튼-->
                                     <button class="btn btn-success btn-open-modal-exchange-address" style="height: 3.5em">반품/교환지 추가</button>
                                 </div>
                             </div>
@@ -389,11 +395,13 @@
     </div>
 </div>
 
+<!-- 출고지 등록 모달 내용 -->
 <div class="modal-release-address">
+    <!-- FadeUn-->
     <div class="modal-release-address-content">
         <div class="row">
             <div class="col">
-                <p class="orbit-regular" style="font-size:2em">새 주소지 등록</p>
+                <p class="orbit-regular" style="font-size:2em">주소지 등록</p>
             </div>
         </div>
         <div class="row">
@@ -425,10 +433,11 @@
                 <p class="noto-sans" style="">우편 번호</p>
             </div>
             <div class="col-3">
-                <input style="background-color: #EEEEEE;" class="form-control" type="text" placeholder="3~6글자로 입력" disabled ="disabled" id ="1">
+                <input style="background-color: #EEEEEE;" class="form-control" type="text" placeholder="3~6글자로 입력" disabled ="disabled" id ="release-address-postcode">
             </div>
             <div class="col-4">
-                <button class="btn btn-primary" onclick="DaumPostcode()">우편번호 검색</button>
+                <!-- 다음 주소 api 활용 : 함수 이름은 DaumDeliveryPostcode().-->
+                <button class="btn btn-primary" onclick="DaumDeliveryPostcode()">우편번호 검색</button>
             </div>
         </div>
 
@@ -449,7 +458,7 @@
 
             </div>
             <div class="col-7">
-                <input style="width:60%;" class="form-control" type="text" placeholder="상세 주소를 입력해주세요" id="dsa1">
+                <input style="width:60%;" class="form-control" type="text" placeholder="상세 주소를 입력해주세요" id="release-detail-address">
             </div>
         </div>
 
@@ -484,7 +493,7 @@
     <div class="modal-exchange-address-content">
         <div class="row">
             <div class="col">
-                <p class="orbit-regular" style="font-size:2em">새 주소지 등록</p>
+                <p class="orbit-regular" style="font-size:2em">반품 / 교환지 등록</p>
             </div>
         </div>
         <div class="row">
@@ -507,7 +516,7 @@
                 <p class="noto-sans" style="">주소지명</p>
             </div>
             <div class="col-7">
-                <input style="width:60%;" class="form-control" type="text" placeholder="주소지명을 입력해주세요">
+                <input style="width:60%;" class="form-control" type="text" placeholder="주소지명을 입력해주세요" >
             </div>
         </div>
         <div class="row mt-3">
@@ -516,10 +525,11 @@
                 <p class="noto-sans" style="">우편 번호</p>
             </div>
             <div class="col-3">
-                <input style="background-color: #EEEEEE;" class="form-control" type="text" placeholder="3~6글자로 입력" disabled ="disabled" id ="release-address-postcode">
+                <!-- 여기가 우편 번호 보여주는 곳-->
+                <input style="background-color: #EEEEEE;" class="form-control" type="text" placeholder="3~6글자로 입력" disabled ="disabled" id ="return-address-postcode">
             </div>
             <div class="col-4">
-                <button class="btn btn-primary" onclick="DaumPostcode()">우편번호 검색</button>
+                <button class="btn btn-primary" onclick="DaumReturnPostCode()">우편번호 검색</button>
             </div>
         </div>
 
@@ -531,7 +541,7 @@
 
             <div class="col-7">
                 <input style="background-color: #EEEEEE; width:60%;" class="form-control" type="text" placeholder="기본주소를 입력해주세요." disabled = "disabled"
-                       id="2">
+                       id="return-address">
             </div>
         </div>
         <div class="row mt-3">
@@ -540,7 +550,7 @@
 
             </div>
             <div class="col-7">
-                <input style="width:60%;" class="form-control" type="text" placeholder="상세 주소를 입력해주세요" id="3">
+                <input style="width:60%;" class="form-control" type="text" placeholder="상세 주소를 입력해주세요" id="return-detail-address">
             </div>
         </div>
 
@@ -550,7 +560,7 @@
                 <p class="noto-sans" style="">전화번호</p>
             </div>
             <div class="col-7">
-                <input style="width:60%;" class="form-control" type="tel" pattern="[0-9]{3}-[0-9]{4}-[0-9]{4}" required  placeholder="010-xxxx-xxxx">
+                <input style="width:60%;" class="form-control" type="tel" pattern="[0-9]{3}-[0-9]{4}-[0-9]{4}" required placeholder="010-xxxx-xxxx">
             </div>
         </div>
         <div class="row mt-3">
@@ -589,39 +599,33 @@
     // data.jibunAddress: 지번 주소 (지번 주소를 선택한 경우)
     // data.bname: 법정동명 (도로명 주소 선택 시)
     // data.buildingName: 건물명 (공동주택일 경우)
+
+    // 배송지 Daum 주소 API 함수
     // data.apartment: 공동주택 여부 (공동주택이면 'Y')
-    function DaumPostcode() {
+    function DaumDeliveryPostcode() {
         new daum.Postcode({
-            oncomplete: function(data) { // data 객체로 전달. 위에 데이터 객체로 정보 얻기 가능
-                // 내려오는 변수가 값이 없는 경우엔 공백('')값을 가지므로, 이를 참고하여 분기 한다.
+            oncomplete: function(data) { // data 객체로 전달
                 var addr = ''; // 주소 변수
                 var extraAddr = ''; // 참고항목 변수
 
-                //사용자가 선택한 주소 타입에 따라 해당 주소 값을 가져온다.
-                if (data.userSelectedType === 'R') { // 사용자가 도로명 주소를 선택했을 경우
+                // 사용자가 선택한 주소 타입에 따라 해당 주소 값을 가져온다.
+                if (data.userSelectedType === 'R') {
                     addr = data.roadAddress;
-                } else { // 사용자가 지번 주소를 선택했을 경우(J)
+                } else {
                     addr = data.jibunAddress;
                 }
 
-                // 사용자가 선택한 주소가 도로명 타입일때 참고항목을 조합한다.
-                if(data.userSelectedType === 'R'){
-                    // 법정동명이 있을 경우 추가한다. (법정리는 제외)
-                    // 법정동의 경우 마지막 문자가 "동/로/가"로 끝난다.
-                    if(data.bname !== '' && /[동|로|가]$/g.test(data.bname)){
+                // 도로명 주소일 경우 참고항목을 조합
+                if (data.userSelectedType === 'R') {
+                    if (data.bname !== '' && /[동|로|가]$/g.test(data.bname)) {
                         extraAddr += data.bname;
                     }
-                    // 건물명이 있고, 공동주택일 경우 추가한다.
-                    if(data.buildingName !== '' && data.apartment === 'Y'){
+                    if (data.buildingName !== '' && data.apartment === 'Y') {
                         extraAddr += (extraAddr !== '' ? ', ' + data.buildingName : data.buildingName);
                     }
-                    // 표시할 참고항목이 있을 경우, 괄호까지 추가한 최종 문자열을 만든다.
-                    if(extraAddr !== ''){
+                    if (extraAddr !== '') {
                         extraAddr = ' (' + extraAddr + ')';
                     }
-                    // 조합된 참고항목을 해당 필드에 넣는다.
-                    // document.getElementById("release-detail-address").value = extraAddr;
-
                 } else {
                     document.getElementById("release-detail-address").value = '';
                 }
@@ -629,11 +633,62 @@
                 // 우편번호와 주소 정보를 해당 필드에 넣는다.
                 document.getElementById('release-address-postcode').value = data.zonecode;
                 document.getElementById("release-address").value = addr;
+                document.getElementById("release-detail-address").value = extraAddr;
+
+
+
                 // 커서를 상세주소 필드로 이동한다.
                 document.getElementById("release-detail-address").focus();
+
+                // 팝업을 닫는다.
+                window.close(); // 주소 선택 후 팝업 닫기
             }
-        }).open();
+        }).open(); // 이 호출은 필요합니다.
     }
+
+    // 배송/ 반품지 Damn 주소 Api
+    function DaumReturnPostCode(){
+        new daum.Postcode({
+            oncomplete: function(data) { // data 객체로 전달
+                var addr = ''; // 주소 변수
+                var extraAddr = ''; // 참고항목 변수
+
+                // 사용자가 선택한 주소 타입에 따라 해당 주소 값을 가져온다.
+                if (data.userSelectedType === 'R') {
+                    addr = data.roadAddress;
+                } else {
+                    addr = data.jibunAddress;
+                }
+
+                // 도로명 주소일 경우 참고항목을 조합
+                if (data.userSelectedType === 'R') {
+                    if (data.bname !== '' && /[동|로|가]$/g.test(data.bname)) {
+                        extraAddr += data.bname;
+                    }
+                    if (data.buildingName !== '' && data.apartment === 'Y') {
+                        extraAddr += (extraAddr !== '' ? ', ' + data.buildingName : data.buildingName);
+                    }
+                    if (extraAddr !== '') {
+                        extraAddr = ' (' + extraAddr + ')';
+                    }
+                } else {
+                    document.getElementById("release-detail-address").value = '';
+                }
+
+                // 우편번호와 주소 정보를 해당 필드에 넣는다.
+                document.getElementById('return-address-postcode').value = data.zonecode;
+                document.getElementById("return-address").value = addr;
+                document.getElementById("return-detail-address").value = extraAddr;
+                // 커서를 상세주소 필드로 이동한다.
+                document.getElementById("return-detail-address").focus();
+
+                // 팝업을 닫는다.
+                window.close(); // 주소 선택 후 팝업 닫기
+            }
+        }).open(); // 이 호출은 필요합니다.
+    }
+
+
 
     // DOM이 준비된 후 코드 실행 (jQuery 사용)
     $(document).ready(function() {
@@ -642,17 +697,32 @@
             language: 'ko',
             height: 250
         });
+
+
+        const detailedImage = $('.detailed_image');
+        const RepresentativeImage = $('.Representative-image');
+        if(detailedImage.files.length > 3){
+            console.log('파일이 3개가 넘습니다!');
+        }
+        if(RepresentativeImage.files.length === 0 || detailedImage.files.length === 0){
+            console.log('현재 선택된 파일이 0개입니다.');
+        }
+
+
+
+        // ---------------- 출고지 등록 모달 이벤트-------------
         // Modal 버튼 이벤트 등록 = fadeIn = 서서히 드러나는 애니메이션 이벤트
         // 모달 닫기 버튼 클릭 이벤트 등록 = fadeOut = 서서히 사라지는 애니메이션 이벤트
 
-        // ---------------- 출고지 등록 ------------------------------
         $('.btn-open-modal-release-address').click(function(){
             $('.modal-release-address').fadeIn();
         });
         $('.btn-close-modal-release-address').click(function(){
             $('.modal-release-address').fadeOut();
         });
+        // -----------------------------------------------
 
+        // ---------------- 반품 / 교환지 모달 이벤트-------------
         $('.btn-open-modal-exchange-address').click(function(){
             $('.modal-exchange-address').fadeIn();
         });
@@ -660,6 +730,12 @@
         $('.btn-close-modal-exchange-address-content').click(function(){
             $('.modal-exchange-address').fadeOut();
         })
+        // -----------------------------------------------
+
+
+
+
+
 
     });
 </script>

@@ -64,6 +64,76 @@
 .detailed_image{
     display:none;
 }
+/*
+ position:fixed를 주면서 원래는 너비가 100이었다가
+ fixed, absoulte를 주게되면 자식 컨텐츠 요소에 맞게된다.
+ 즉 모든 요소는 inline으로 바뀐다.
+아 그니까 인라인 요소만큼 rgba 즉 검은 투명한 색이 채워지니까
+자식 요소의 크기만큼 배경색이 원래 칠해지는데
+width: 100% 를 주어서 모든 배경색을 칠해지게 한다. 즉
+width: 100% 가 필수다.
+ */
+.modal-release-address{
+    display:none;
+    position:fixed;
+    top:0;
+    left:0;
+    background-color: rgba(0,0,0,0.4);
+    height:100vh;
+    width:100%;
+}
+/*
+검은색 배경 창 안의 모달 컨텐츠이다.
+모달 컨텐츠의 백그라운드 배경색은 하양색, radius: 10px;
+position은 절대 위치로
+top : 50 , left: 50 으로 정가운데 위치로
+하지만 자식요소의 좌측 상단 모서리가 맞춰지면서
+중심 요소가 좌측 상단이 되기에
+transform를 통하여 -50, -50 으로
+다시 요소의 중심을 맞춰준다.
+*/
+.modal-release-address-content{
+    background-color: #fff;
+    width:50%;
+    border-radius: 10px;
+    position:absolute;
+    top:50%;
+    left:50%;
+    transform: translate(-50%, -50%);
+    padding:30px;
+    box-shadow: 0 0 15px rgba(0,0,0,0.15);
+}
+
+/* 모달을 감싸는 화면 즉 FadeIn() 되는 화면의 전체다
+회색의 배경부분이 있으며 화면은 100:100 즉 전부를 차지한다.
+화면은 고정이며 처음은 none으로 안보이게
+*/
+.modal-exchange-address{
+    display:none;
+    position:fixed;
+    top:0;
+    left:0;
+    background-color: rgba(0,0,0,0.4);
+    height:100vh;
+    width:100%;
+}
+
+/*
+모달의 내용부분이며 정 가운데 내용을 오게 만들었으며, padding이 있다.
+*/
+.modal-exchange-address-content{
+    background-color: #fff;
+    width:50%;
+    border-radius: 10px;
+    position:absolute;
+    top:50%;
+    left:50%;
+    transform: translate(-50%, -50%);
+    padding:30px;
+    box-shadow: 0 0 15px rgba(0,0,0,0.15);
+}
+
+
 
 /* 관리자 메뉴 바 */
 /* 공통 스타일 */
