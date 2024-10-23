@@ -57,7 +57,7 @@
     background-color: #f0f0f0;
 }
 /* 대표이미지 기본 버튼 없애기*/
-.Representative-image{
+.representative-image{
     display:none;
 }
 

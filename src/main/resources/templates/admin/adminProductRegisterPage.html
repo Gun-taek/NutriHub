@@ -165,8 +165,8 @@
                                     <!--                                    <input class="mt-3 ps-4" type="text" placeholder="카테고리명 입력"-->
                                     <!--                                           style="width:50%;height:30% ;border-radius:0.5em; border: 1px solid darkgray;">-->
                                     <label for="lang"></label>
-                                    <select class="form-select" name="languages" id="lang">
-                                        <option value="" disabled selected>선택해주세요</option>
+                                    <select class="form-select" name="languages" id="lang" style="text-align: center;">
+                                        <option value="" disabled selected >선택해주세요</option>
                                         <option value="상품종류1">상품종류1</option>
                                         <option value="상품종류2">상품종류2</option>
                                         <option value="상품종류3">상품종류3</option>
@@ -225,37 +225,39 @@
                                 </div>
 
                                 <div class="col-3 ps-4 pt-3 d-flex flex-column center-label-container" style="background-color: white">
-                                    <label for="price1" class="text-center" style="margin-bottom: 0.5em; font-size: 1em; color: black; font-weight: bold;">
+                                    <label for="product-normal-price" class="text-center" style="margin-bottom: 0.5em; font-size: 1em; color: black; font-weight: bold;">
                                         정상가
                                         <span style="color:gray"><i class="bi bi-info-circle"></i></span>
                                     </label>
                                     <!-- 원을 일직선으로 보이게 하기 위해 d-flex 적용 -->
                                     <div class="d-flex justify-content-center align-items-center">
-                                        <input id="price1" class="form-control w-50" style="width: auto;" placeholder="">
+                                        <input id="product-normal-price" class="form-control w-50" style="width: auto; text-align:center;" placeholder="">
                                         <span style="margin-left: 0.5em;">원</span>
                                     </div>
                                 </div>
 
+
                                 <div class="col-3 ps-4 pt-3 d-flex flex-column center-label-container" style="background-color: white">
-                                    <label for="price1" class="text-center" style="margin-bottom: 0.5em; font-size: 1em; color: black; font-weight: bold;">
-                                        판매가
-                                        <span style="color:gray"><i class="bi bi-info-circle"></i></span>
-                                    </label>
-                                    <!-- 원을 일직선으로 보이게 하기 위해 d-flex 적용 -->
-                                    <div class="d-flex justify-content-center align-items-center">
-                                        <input id="price2" class="form-control w-50" style="width: auto;" placeholder="">
-                                        <span style="margin-left: 0.5em;">원</span>
-                                    </div>
-                                </div>
-                                <div class="col-3 ps-4 pt-3 d-flex flex-column center-label-container" style="background-color: white">
-                                    <label for="price1" class="text-center" style="margin-bottom: 0.5em; font-size: 1em; color: black; font-weight: bold;">
+                                    <label for="product-discount-rate" class="text-center" style="margin-bottom: 0.5em; font-size: 1em; color: black; font-weight: bold;">
                                         할인율
                                         <span style="color:gray"><i class="bi bi-info-circle"></i></span>
                                     </label>
                                     <!-- 원을 일직선으로 보이게 하기 위해 d-flex 적용 -->
                                     <div class="d-flex justify-content-center align-items-center">
-                                        <input id="price3" class="form-control w-50" style="width: auto;" placeholder="">
+                                        <input id="product-discount-rate" class="form-control w-50" style="width: auto; text-align: center" placeholder="">
                                         <span style="margin-left: 0.5em;">%</span>
+                                    </div>
+                                </div>
+
+                                <div class="col-3 ps-4 pt-3 d-flex flex-column center-label-container" style="background-color: white">
+                                    <label for="product-selling-price" class="text-center" style="margin-bottom: 0.5em; font-size: 1em; color: black; font-weight: bold;">
+                                        판매가
+                                        <span style="color:gray"><i class="bi bi-info-circle"></i></span>
+                                    </label>
+                                    <!-- 원을 일직선으로 보이게 하기 위해 d-flex 적용 -->
+                                    <div class="d-flex justify-content-center align-items-center">
+                                        <input id="product-selling-price" class="form-control w-50" style="width: auto; text-align: center"  placeholder="">
+                                        <span style="margin-left: 0.5em;">원</span>
                                     </div>
                                 </div>
                                 <div class="col" style="background-color: white"></div>
@@ -278,12 +280,12 @@
                                 </div>
                                 <div class="col ps-5 d-flex align-items-center" style="background-color: white">
                                     <!-- 버튼을 라벨로 해주고 라벨이 대신 버튼이 되어줄것이다.-->
-                                    <label for="Representative-image">
-                                        <img th:src="@{/public/image/adminMainPage/photo_logo.png}"
+                                    <label for="representative-image">
+                                        <img th:src="@{/public/image/adminProductRegisterPage/photo_logo.png}"
                                              style="width:auto; height: 10vh; cursor: pointer">
                                     </label>
                                     <!-- 대표 이미지 image만 accept 되게..... -->
-                                    <input type="file" accept="image/*" class="Representative-image" id="Representative-image"/>
+                                    <input type="file" accept="image/*" class="representative-image" id="representative-image" style="display: none">
                                 </div>
                             </div>
                             <!-- ------------------------------------ -->
@@ -292,18 +294,17 @@
                                 <div class="col-2 pt-0 d-flex flex-column justify-content-center align-items-center" style="border-right: 1px solid #DEE2E6; padding-top:1.9em;">
                                     <span class="noto-sans" style="font-size: 1.1em; color:darkgray;font-weight: bold;">
                                         상세 이미지
-
-                                        <span class="noto-sans" style="align-items: center; display:inline;font-size: 0.9em; color:orangered;font-weight: bold;">*</span>   <span class="noto-sans" style="align-items: center; display:inline;font-size: 0.9em; color:orangered;font-weight: bold;">*</span>
+                                        <span class="noto-sans" style="align-items: center; display:inline;font-size: 0.9em; color:orangered;font-weight: bold;">*</span>
                                     </span>
                                     <span class="orbit-regular" style="font-size: 0.8em; color: dimgray; ">(최대 3개 등록 가능)</span>
                                 </div>
 
                                 <div class="col ps-5 d-flex align-items-center" style="background-color: white;">
                                     <!-- 버튼을 라벨로 해주고 라벨이 대신 버튼이 되어줄것이다.-->
-                                    <label for="detailed_image">
-                                        <img th:src="@{/public/image/adminMainPage/photo_logo.png}" style="width:auto; height: 10vh; cursor: pointer;">
+                                    <label for="detailed-image">
+                                        <img th:src="@{/public/image/adminProductRegisterPage/photo_logo.png}" style="width:auto; height: 10vh; cursor: pointer;">
                                     </label>
-                                    <input type="file" multiple="multiple" accept="image/*" class="detailed_image" id="detailed_image" style="display: none;">
+                                    <input type="file" multiple="multiple" accept="image/*" class="detailed-image" id="detailed-image" style="display: none;">
                                 </div>
                             </div>
 
@@ -324,7 +325,6 @@
                                     </div>
                                 </div>
                             </div>
-
 
                             <div class="row mt-5">
                                 <div class="col">
@@ -607,14 +607,12 @@
             oncomplete: function(data) { // data 객체로 전달
                 var addr = ''; // 주소 변수
                 var extraAddr = ''; // 참고항목 변수
-
                 // 사용자가 선택한 주소 타입에 따라 해당 주소 값을 가져온다.
                 if (data.userSelectedType === 'R') {
                     addr = data.roadAddress;
                 } else {
                     addr = data.jibunAddress;
                 }
-
                 // 도로명 주소일 경우 참고항목을 조합
                 if (data.userSelectedType === 'R') {
                     if (data.bname !== '' && /[동|로|가]$/g.test(data.bname)) {
@@ -629,37 +627,29 @@
                 } else {
                     document.getElementById("release-detail-address").value = '';
                 }
-
                 // 우편번호와 주소 정보를 해당 필드에 넣는다.
                 document.getElementById('release-address-postcode').value = data.zonecode;
                 document.getElementById("release-address").value = addr;
                 document.getElementById("release-detail-address").value = extraAddr;
-
-
-
                 // 커서를 상세주소 필드로 이동한다.
                 document.getElementById("release-detail-address").focus();
-
                 // 팝업을 닫는다.
                 window.close(); // 주소 선택 후 팝업 닫기
             }
         }).open(); // 이 호출은 필요합니다.
     }
-
     // 배송/ 반품지 Damn 주소 Api
-    function DaumReturnPostCode(){
+    function DaumReturnPostCode() {
         new daum.Postcode({
-            oncomplete: function(data) { // data 객체로 전달
+            oncomplete: function (data) { // data 객체로 전달
                 var addr = ''; // 주소 변수
                 var extraAddr = ''; // 참고항목 변수
-
                 // 사용자가 선택한 주소 타입에 따라 해당 주소 값을 가져온다.
                 if (data.userSelectedType === 'R') {
                     addr = data.roadAddress;
                 } else {
                     addr = data.jibunAddress;
                 }
-
                 // 도로명 주소일 경우 참고항목을 조합
                 if (data.userSelectedType === 'R') {
                     if (data.bname !== '' && /[동|로|가]$/g.test(data.bname)) {
@@ -674,22 +664,17 @@
                 } else {
                     document.getElementById("release-detail-address").value = '';
                 }
-
                 // 우편번호와 주소 정보를 해당 필드에 넣는다.
                 document.getElementById('return-address-postcode').value = data.zonecode;
                 document.getElementById("return-address").value = addr;
                 document.getElementById("return-detail-address").value = extraAddr;
                 // 커서를 상세주소 필드로 이동한다.
                 document.getElementById("return-detail-address").focus();
-
                 // 팝업을 닫는다.
                 window.close(); // 주소 선택 후 팝업 닫기
             }
         }).open(); // 이 호출은 필요합니다.
     }
-
-
-
     // DOM이 준비된 후 코드 실행 (jQuery 사용)
     $(document).ready(function() {
         // CkEditor5 사용
@@ -697,17 +682,57 @@
             language: 'ko',
             height: 250
         });
-
-
-        const detailedImage = $('.detailed_image');
-        const RepresentativeImage = $('.Representative-image');
-        if(detailedImage.files.length > 3){
-            console.log('파일이 3개가 넘습니다!');
+        // ------------ 정상가, 판매가, 할인율에 따른 값 채워짐 --------------------------
+        // 정상가
+        const productNomalPrice = $('#product-normal-price');
+        // 판매가격 (정상가 * (1-할인율)
+        const productSellingPrice = $('#product-selling-price');
+        // 할인율
+        const productDiscountRate = $('#product-discount-rate');
+        // 현재 정상가
+        const nomalPrice = parseFloat((productNomalPrice.val()));
+        // 숫자로 변환해줘야한다. val() 함수는 어떤 타입을 입력받건 간에 문자열로 바꾼다.
+        const sellingPrice = parseFloat((productSellingPrice.val()));
+        // 현재 판매가
+        const discountRate = parseFloat((productDiscountRate.val()));
+        productNomalPrice.on('input', updateSellingPrice);
+        // 정상가 가격 input 태그에 값이 채워질 때 updateSellingPrice 콜백 함수 호출
+        productSellingPrice.on('input', updateSellingPrice);
+        function updateSellingPrice() {
+            const sellingPrice = nomalPrice * (1- (discountRate/100));
+            productSellingPrice.val(nomalPrice);
         }
-        if(RepresentativeImage.files.length === 0 || detailedImage.files.length === 0){
-            console.log('현재 선택된 파일이 0개입니다.');
-        }
 
+        // -------------------------------------------------------------------------
+        // ------------ 상품 대표이미지 ,상세 이미지 예외처리 (파일 선택 개수 및 안 선택했을때의 예외) -------------------
+        $('.representative-image').on('change', function() {
+            // 상품 설명 대표 이미지 , [0] = DOM 에 접근하기 위한 것
+            const representativeImage = $('.representative-image')[0];
+            // 상품 설명 상세 이미지
+            const detailedImage = $('.detailed-image')[0];
+            // 대표 이미지가 선택되지 않았을 때 경고
+            if (representativeImage.files.length === 0) {
+                alert('대표 이미지 파일을 선택해주세요!');
+            }
+        });
+        // detailed-image 에 change 콜백 이벤트 추가. (click, mouseover 등 다른 이벤트도 있다.)
+        // change = 값이 변하면 호출되게 한다.
+        $('.detailed-image').on('change', function() {
+            // 상품 설명 상세 이미지
+            const detailedImage = $('.detailed-image')[0];
+            // 상세 이미지가 3개 이상일 때 경고
+            if (detailedImage.files.length > 3) {
+                alert('상세 이미지는 최대 3개까지 선택할 수 있습니다.');
+                // 파일 선택 초기화
+                detailedImage.value = '';  // 파일 선택 초기화
+            }
+            // 상세 이미지가 선택되지 않았을 때 경고
+            if (detailedImage.files.length === 0) {
+                alert('상세 이미지를 다시 선택해주세요!');
+            }
+        });
+
+        //---------------------------------------------------------------------------
 
 
         // ---------------- 출고지 등록 모달 이벤트-------------
@@ -721,7 +746,6 @@
             $('.modal-release-address').fadeOut();
         });
         // -----------------------------------------------
-
         // ---------------- 반품 / 교환지 모달 이벤트-------------
         $('.btn-open-modal-exchange-address').click(function(){
             $('.modal-exchange-address').fadeIn();
@@ -731,12 +755,6 @@
             $('.modal-exchange-address').fadeOut();
         })
         // -----------------------------------------------
-
-
-
-
-
-
     });
 </script>
 
