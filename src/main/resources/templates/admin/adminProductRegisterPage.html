@@ -682,25 +682,27 @@
             language: 'ko',
             height: 250
         });
-        // ------------ 정상가, 판매가, 할인율에 따른 값 채워짐 --------------------------
+        // ------------ 정상가, 판매가, 할`인율에 따른 값 채워짐 --------------------------
         // 정상가
         const productNomalPrice = $('#product-normal-price');
         // 판매가격 (정상가 * (1-할인율)
         const productSellingPrice = $('#product-selling-price');
         // 할인율
         const productDiscountRate = $('#product-discount-rate');
-        // 현재 정상가
-        const nomalPrice = parseFloat((productNomalPrice.val()));
-        // 숫자로 변환해줘야한다. val() 함수는 어떤 타입을 입력받건 간에 문자열로 바꾼다.
-        const sellingPrice = parseFloat((productSellingPrice.val()));
-        // 현재 판매가
-        const discountRate = parseFloat((productDiscountRate.val()));
+
         productNomalPrice.on('input', updateSellingPrice);
         // 정상가 가격 input 태그에 값이 채워질 때 updateSellingPrice 콜백 함수 호출
-        productSellingPrice.on('input', updateSellingPrice);
+        productDiscountRate.on('input', updateSellingPrice);
         function updateSellingPrice() {
+
+            // 현재 정상가
+            const nomalPrice = parseFloat(productNomalPrice.val()) || 0;
+            // 숫자로 변환해줘야한다. val() 함수는 어떤 타입을 입력받건 간에 문자열로 바꾼다.
+            const discountRate = parseFloat(productDiscountRate.val()) || 0;
+
             const sellingPrice = nomalPrice * (1- (discountRate/100));
-            productSellingPrice.val(nomalPrice);
+            productSellingPrice.val(sellingPrice.toFixed());
+
         }
 
         // -------------------------------------------------------------------------
