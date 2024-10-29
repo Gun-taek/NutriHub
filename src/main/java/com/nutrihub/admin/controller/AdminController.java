@@ -1,6 +1,7 @@
 package com.nutrihub.admin.controller;
 
 
+import com.nutrihub.admin.dto.ProductDto;
 import com.nutrihub.admin.service.AdminServiceImpl;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -22,5 +23,15 @@ public class AdminController {
     @RequestMapping("ProductRegisterPage")
     public String ProductRegisterPage () {
         return "/admin/adminProductRegisterPage";
+    }
+
+
+    // 상품 등록 요청
+    @RequestMapping("ProductRegister")
+    public String ProductRegister(ProductDto productDto){
+        adminService.ProductRegister(productDto);
+
+//        System.out.println(productDto.getProduct_name()); // 테스트 잘 되는지.
+        return "/admin/adminMainPage";
     }
 }

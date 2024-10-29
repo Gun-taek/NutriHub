@@ -1,12 +1,19 @@
 package com.nutrihub.admin.service;
 
+import com.nutrihub.admin.dto.ProductDto;
 import com.nutrihub.admin.mapper.AdminSqlMapper;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
 public class AdminServiceImpl {
-    private final AdminSqlMapper adminSqlMapper;
-    public AdminServiceImpl(AdminSqlMapper adminSqlMapper){
-        this.adminSqlMapper = adminSqlMapper;
+
+    @Autowired
+    private AdminSqlMapper adminSqlMapper;
+    public void ProductRegister(ProductDto productDto){
+        adminSqlMapper.ProductRegister(productDto);
     }
+
+
 }
+

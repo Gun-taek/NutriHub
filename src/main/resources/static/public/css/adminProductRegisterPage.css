@@ -134,6 +134,22 @@ transform를 통하여 -50, -50 으로
 }
 
 
+.form-sell-button{
+    background-color: #49637B;
+    border-radius:0.3em;
+    border:1em #677557;
+    color:white;
+    padding:0.9em;
+}
+
+
+.form-sell-button:hover{
+    background-color: black;
+}
+
+.form-sell-button:active{
+    background-color: black;
+}
 
 /* 관리자 메뉴 바 */
 /* 공통 스타일 */

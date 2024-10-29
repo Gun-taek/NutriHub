@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.nutrihub.user.mapper.AdminSqlMapper">
+
+
+    <insert id = "registerProduct">
+        INSERT INTO product (product_category_pk, product_name, representative_image, detailed_image1, detailed_image2, detailed_image3, content, price, sale_price, sale_percent, stock)
+        VALUES (1, #{product_name}, #{representative_image}, #{detailed_image1}, #{detailed_image2}, #{detailed_image3}, #{content}, #{price}, #{sale_price}, #{sale_percent}, #{stock});
+#         INSERT INTO product (product_category_pk, product_name, representative_image, detailed_image1, detailed_image2, detailed_image3, content, price, sale_price, sale_percent, stock)
+#         VALUES (#{product_category_pk}], #{product_name}, #{representative_image}, #{detailed_image1}, #{detailed_image2}, #{detailed_image3}, #{content}, #{price}, #{sale_price}, #{sale_percent}, #{stock});
+    </insert>
+</mapper>

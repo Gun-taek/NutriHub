@@ -9,7 +9,6 @@ import java.util.List;
 
 @Service
 public class UserServiceImpl{
-
     private final UserSqlMapper userSqlMapper;
     public UserServiceImpl(UserSqlMapper userSqlMapper){
         this.userSqlMapper = userSqlMapper;
