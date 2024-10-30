@@ -193,24 +193,24 @@
                                 </div>
 
                                 <div class="col-4 ps-4 d-flex justify-content-center align-items-center" style="background-color: white">
-                                    <input class="form-control" placeholder="상품명 입력" style="text-align: center">
+                                    <input class="form-control" placeholder="상품명 입력" style="text-align: center" name="product_name">
                                 </div>
                                 <div class="col"style="background-color: white"></div>
                             </div>
 
-                            <div class="row  border-bottom border-start border-end" style="height:10vh">
-                                <div class="col-2 pt-0 d-flex justify-content-center align-items-center" style="border-right: 1px solid #DEE2E6; padding-top:1.9em;">
-                                  <span class="noto-sans" style="font-size: 1em; color:darkgray;font-weight: bold ">
-                                        브랜드
-                                    </span>
-                                    <span class="noto-sans" style="font-size: 1em; color:orangered;font-weight: bold" >*</span>
-                                </div>
+<!--                            <div class="row  border-bottom border-start border-end" style="height:10vh">-->
+<!--                                <div class="col-2 pt-0 d-flex justify-content-center align-items-center" style="border-right: 1px solid #DEE2E6; padding-top:1.9em;">-->
+<!--                                  <span class="noto-sans" style="font-size: 1em; color:darkgray;font-weight: bold ">-->
+<!--                                        브랜드-->
+<!--                                    </span>-->
+<!--                                    <span class="noto-sans" style="font-size: 1em; color:orangered;font-weight: bold" >*</span>-->
+<!--                                </div>-->
 
-                                <div class="col-4 ps-4 d-flex justify-content-center align-items-center" style="background-color: white">
-                                    <input class="form-control" placeholder="브랜드명 입력" style="text-align:center;">
-                                </div>
-                                <div class="col"style="background-color: white"></div>
-                            </div>
+<!--                                <div class="col-4 ps-4 d-flex justify-content-center align-items-center" style="background-color: white">-->
+<!--                                    <input class="form-control" placeholder="브랜드명 입력" style="text-align:center;">-->
+<!--                                </div>-->
+<!--                                <div class="col"style="background-color: white"></div>-->
+<!--                            </div>-->
 
                             <div class="row mt-5">
                                 <div class="col">
@@ -232,7 +232,7 @@
                                     </label>
                                     <!-- 원을 일직선으로 보이게 하기 위해 d-flex 적용 -->
                                     <div class="d-flex justify-content-center align-items-center">
-                                        <input id="product-normal-price" class="form-control w-50" style="width: auto; text-align:center;" placeholder="">
+                                        <input id="product-normal-price" class="form-control w-50" style="width: auto; text-align:center;" name="price" >
                                         <span style="margin-left: 0.5em;">원</span>
                                     </div>
                                 </div>
@@ -245,7 +245,7 @@
                                     </label>
                                     <!-- 원을 일직선으로 보이게 하기 위해 d-flex 적용 -->
                                     <div class="d-flex justify-content-center align-items-center">
-                                        <input id="product-discount-rate" class="form-control w-50" style="width: auto; text-align: center" placeholder="">
+                                        <input id="product-discount-rate" class="form-control w-50" style="width: auto; text-align: center" name="sale_percent">
                                         <span style="margin-left: 0.5em;">%</span>
                                     </div>
                                 </div>
@@ -257,7 +257,7 @@
                                     </label>
                                     <!-- 원을 일직선으로 보이게 하기 위해 d-flex 적용 -->
                                     <div class="d-flex justify-content-center align-items-center">
-                                        <input id="product-selling-price" class="form-control w-50" style="width: auto; text-align: center"  placeholder="">
+                                        <input id="product-selling-price" class="form-control w-50" style="width: auto; text-align: center"  name="sale_price">
                                         <span style="margin-left: 0.5em;">원</span>
                                     </div>
                                 </div>
@@ -286,7 +286,7 @@
                                              style="width:auto; height: 10vh; cursor: pointer">
                                     </label>
                                     <!-- 대표 이미지 image만 accept 되게..... -->
-                                    <input type="file" accept="image/*" class="representative-image" id="representative-image" style="display: none">
+                                    <input type="file" accept="image/*" class="representative-image" id="representative-image" style="display: none" name="representative_image">
                                 </div>
                             </div>
                             <!-- ------------------------------------ -->
@@ -305,7 +305,7 @@
                                     <label for="detailed-image">
                                         <img th:src="@{/public/image/adminProductRegisterPage/photo_logo.png}" style="width:auto; height: 10vh; cursor: pointer;">
                                     </label>
-                                    <input type="file" multiple="multiple" accept="image/*" class="detailed-image" id="detailed-image" style="display: none;">
+                                    <input type="file" multiple="multiple" accept="image/*" class="detailed-image" id="detailed-image" style="display: none;" name="detailed_image1">
                                 </div>
                             </div>
 
