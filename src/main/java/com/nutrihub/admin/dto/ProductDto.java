@@ -14,8 +14,8 @@ public class ProductDto {
     private String detailed_image3;
     private String content;
     private int price;
-    private int sale_price;
     private int sale_percent;
+    private int sale_price;
     private int stock;
     private Date reg_date;
 }

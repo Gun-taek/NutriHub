@@ -67,7 +67,6 @@ public class UserController {
     @PostMapping("loginProcess")
     public ResponseEntity<String> LoginProcess(@RequestBody UserDto userDto, HttpSession session){
 
-
         UserDto authenticatedUser = userService.LoginProcess(userDto);
         if(authenticatedUser != null) {
             session.setAttribute("User", authenticatedUser);
@@ -77,7 +76,6 @@ public class UserController {
         } else {
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("로그인 실패");
         }
-
     }
 
 
