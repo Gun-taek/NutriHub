@@ -1,6 +1,8 @@
 package com.nutrihub.admin.dto;
 
 import lombok.Data; // lombok Data 라이브러리 = getter,setter 생략
+import org.springframework.web.multipart.MultipartFile;
+
 import java.util.Date;
 
 @Data
@@ -17,5 +19,5 @@ public class ProductDto {
     private int sale_percent;
     private int sale_price;
     private int stock;
-    private Date reg_date;
+    private Date created_at;
 }

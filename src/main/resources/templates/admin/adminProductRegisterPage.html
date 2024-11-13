@@ -138,7 +138,7 @@
                     </div>
 
 
-                    <form action="./ProductRegister" method="post" id ="productRegister">
+                    <form action="./ProductRegister" method="post" id ="productRegister" enctype="multipart/form-data">
                         <!-- 상품 등록 요청 보내기 -->
                     <!-- col-10 부분의 왼쪽, 오른쪽 부분의 구분선을 넣었다. -->
                     <div class="row" style="border-left: 1px solid #DEE2E6;border-right: 1px solid #DEE2E6;border-bottom:1px solid #DEE2E6">
@@ -154,18 +154,21 @@
                             <div class="row mt-4 border" style="height:14vh">
                                 <div class="col-2 pt-0 d-flex justify-content-center align-items-center" style="border-right: 1px solid #DEE2E6; padding-top:1.9em;">
                                     <span class="noto-sans" style="font-size: 1em; color:darkgray;font-weight: bold ">
-                                        관리카테고리
+                                            관리카테고리
                                     </span>
                                     <span class="noto-sans" style="font-size: 1em; color:orangered;font-weight: bold" >*</span>
                                 </div>
 
-                                <div class="col-4 ps-4" style="background-color: white">
+                                <div class="col-4 ps-4 d-flex align-items-center" style="background-color: white">
                                     <!--                                    <input class="mt-3 ps-4" type="text" placeholder="카테고리명 입력"-->
                                     <!--                                           style="width:50%;height:30% ;border-radius:0.5em; border: 1px solid darkgray;">-->
-                                    <label for="category-select"></label>
-                                    <select class="form-select" name="" id="category-select" style="text-align: center;">
+
+                                    <select class="form-select" name="product_category_pk" id="category-select" style="text-align: center;">
                                         <option value="" disabled selected>선택해주세요</option>
-                                        <!-- Fetch API로 추가될 카테고리 옵션이 여기에 삽입됩니다 -->
+                                        <!-- productCategoryList의 각 요소를 option 태그로 변환 -->
+                                        <th:block th:each="category : ${productCategoryList}">
+                                            <option th:value="${category.product_category_pk}" th:text="${category.product_category_name}"></option>
+                                        </th:block>
                                     </select>
                                 </div>
                                 <div class="col" style="background-color: white"></div>
@@ -275,7 +278,7 @@
                                              style="width:auto; height: 10vh; cursor: pointer">
                                     </label>
                                     <!-- 대표 이미지 image만 accept 되게..... -->
-                                    <input type="file" accept="image/*" class="representative-image" id="representative-image" style="display: none" name="representative_image">
+                                    <input type="file" accept="image/*" class="representative-image" id="representative-image" style="display: none" name="represent_image">
                                 </div>
                             </div>
                             <!-- ------------------------------------ -->
@@ -292,7 +295,7 @@
                                     <label for="detailed-image">
                                         <img th:src="@{/public/image/adminProductRegisterPage/photo_logo.png}" style="width:auto; height: 10vh; cursor: pointer;">
                                     </label>
-                                    <input type="file" multiple="multiple" accept="image/*" class="detailed-image" id="detailed-image" style="display: none;" name="detailed_image1">
+                                    <input type="file" multiple="multiple" accept="image/*" class="detailed-image" id="detailed-image" style="display: none;" name="detailed_images">
                                 </div>
                             </div>
 
@@ -424,7 +427,7 @@
                 <p class="noto-sans" style="">주소지명</p>
             </div>
             <div class="col-7">
-                <input style="width:60%;" class="form-control" type="text" placeholder="주소지명을 입력해주세요">
+                <input style="width:60%;" class="form-control" type="text" placeholder="주소지명을 입력해주세요" name ="shipping_address_name">
             </div>
         </div>
         <div class="row mt-3">
@@ -433,7 +436,8 @@
                 <p class="noto-sans" style="">우편 번호</p>
             </div>
             <div class="col-3">
-                <input style="background-color: #EEEEEE;" class="form-control" type="text" placeholder="3~6글자로 입력" disabled ="disabled" id ="release-address-postcode">
+                <input style="background-color: #EEEEEE;" class="form-control" type="text" placeholder="3~6글자로 입력" disabled ="disabled" id ="shipping_post_number"
+                name="shipping_post_number">
             </div>
             <div class="col-4">
                 <!-- 다음 주소 api 활용 : 함수 이름은 DaumDeliveryPostcode().-->
@@ -449,7 +453,7 @@
 
             <div class="col-7">
                 <input style="background-color: #EEEEEE; width:60%;" class="form-control" type="text" placeholder="기본주소를 입력해주세요." disabled = "disabled"
-                       id="release-address">
+                       id="release-address" name ="shipping_representative_address">
             </div>
         </div>
         <div class="row mt-3">
@@ -458,7 +462,7 @@
 
             </div>
             <div class="col-7">
-                <input style="width:60%;" class="form-control" type="text" placeholder="상세 주소를 입력해주세요" id="release-detail-address">
+                <input style="width:60%;" class="form-control" type="text" placeholder="상세 주소를 입력해주세요" id="release-detail-address" name="shipping_detail_address">
             </div>
         </div>
 
@@ -468,7 +472,7 @@
                 <p class="noto-sans" style="">전화번호</p>
             </div>
             <div class="col-7">
-                <input style="width:60%;" class="form-control" type="tel" pattern="[0-9]{3}-[0-9]{4}-[0-9]{4}" required  placeholder="010-xxxx-xxxx">
+                <input style="width:60%;" class="form-control" type="tel" pattern="[0-9]{3}-[0-9]{4}-[0-9]{4}" required  placeholder="010-1234-5678" name="shipping_phone_number">
             </div>
         </div>
         <div class="row mt-3">
@@ -477,7 +481,7 @@
                 <p class="noto-sans" style="">추가 전화번호</p>
             </div>
             <div class="col-7">
-                <input style="width:60%;" class="form-control" type="tel" pattern="[0-9]{3}-[0-9]{4}-[0-9]{4}" required placeholder="010-xxxx-xxxx">
+                <input style="width:60%;" class="form-control" type="tel" pattern="[0-9]{3}-[0-9]{4}-[0-9]{4}" required placeholder="010-1234-5678" name="shipping_extra_phone_number">
             </div>
         </div>
         <div class="row mt-3 border-top"></div>
@@ -516,7 +520,7 @@
                 <p class="noto-sans" style="">주소지명</p>
             </div>
             <div class="col-7">
-                <input style="width:60%;" class="form-control" type="text" placeholder="주소지명을 입력해주세요" >
+                <input style="width:60%;" class="form-control" type="text" placeholder="주소지명을 입력해주세요" name="refund_address_name">
             </div>
         </div>
         <div class="row mt-3">
@@ -526,7 +530,9 @@
             </div>
             <div class="col-3">
                 <!-- 여기가 우편 번호 보여주는 곳-->
-                <input style="background-color: #EEEEEE;" class="form-control" type="text" placeholder="3~6글자로 입력" disabled ="disabled" id ="return-address-postcode">
+                <input style="background-color: #EEEEEE;" class="form-control" type="text" placeholder="3~6글자로 입력" disabled ="disabled" id ="return-address-postcode"
+                name="refund_address_post_number"
+                >
             </div>
             <div class="col-4">
                 <button class="btn btn-primary" onclick="DaumReturnPostCode()">우편번호 검색</button>
@@ -538,19 +544,18 @@
             <div class="col-4">
                 <p class="noto-sans" style="">주소</p>
             </div>
-
+            <!-- 대표 주소 -->
             <div class="col-7">
                 <input style="background-color: #EEEEEE; width:60%;" class="form-control" type="text" placeholder="기본주소를 입력해주세요." disabled = "disabled"
-                       id="return-address">
+                       id="return-address" name="refund_representative_address">
             </div>
         </div>
         <div class="row mt-3">
             <div class="col-1"></div>
             <div class="col-4">
-
             </div>
             <div class="col-7">
-                <input style="width:60%;" class="form-control" type="text" placeholder="상세 주소를 입력해주세요" id="return-detail-address">
+                <input style="width:60%;" class="form-control" type="text" placeholder="상세 주소를 입력해주세요" id="return-detail-address" name="refund_detail_address">
             </div>
         </div>
 
@@ -560,7 +565,7 @@
                 <p class="noto-sans" style="">전화번호</p>
             </div>
             <div class="col-7">
-                <input style="width:60%;" class="form-control" type="tel" pattern="[0-9]{3}-[0-9]{4}-[0-9]{4}" required placeholder="010-xxxx-xxxx">
+                <input style="width:60%;" class="form-control" type="tel" pattern="[0-9]{3}-[0-9]{4}-[0-9]{4}" required placeholder="010-1234-5678" name="refund_phone_number">
             </div>
         </div>
         <div class="row mt-3">
@@ -569,7 +574,7 @@
                 <p class="noto-sans" style="">추가 전화번호</p>
             </div>
             <div class="col-7">
-                <input style="width:60%;" class="form-control" type="tel" pattern="[0-9]{3}-[0-9]{4}-[0-9]{4}" required placeholder="010-xxxx-xxxx">
+                <input style="width:60%;" class="form-control" type="tel" pattern="[0-9]{3}-[0-9]{4}-[0-9]{4}" required placeholder="010-1234-5678" name="refund_extra_phone_number">
             </div>
         </div>
         <div class="row mt-3 border-top"></div>
@@ -685,28 +690,28 @@
         });
 
 
-        // Fetch API를 사용하여 상품 카테고리 목록 요청
-        fetch('/NutriHub/Admin/API/ProductCategoryList')
-            .then(response => {
-                if (!response.ok) { // 에러 발생시
-                    throw new Error('Network response was not ok');
-                }
-                return response.json();
-            })
-            .then(data => {
-                console.log(data);  // 데이터 확인
-                // 카테고리 리스트를 select 요소에 추가
-                const categorySelect = document.getElementById('category-select'); // HTML 요소 선택
-                data.forEach(category => {
-                    const option = document.createElement('option'); // option 요소 생성
-                    option.value = category.product_category_pk; // value로 pk 값을 설정
-                    option.textContent = category.product_category_name; // 표시할 텍스트로 카테고리 이름 설정
-                    categorySelect.appendChild(option); // select에 option 추가
-                });
-            })
-            .catch(error => {
-                console.error('There has been a problem with your fetch operation:', error);
-            });
+        // // Fetch API를 사용하여 상품 카테고리 목록 요청
+        // fetch('/NutriHub/Admin/API/ProductCategoryList')
+        //     .then(response => {
+        //         if (!response.ok) { // 에러 발생시
+        //             throw new Error('Network response was not ok');
+        //         }
+        //         return response.json();
+        //     })
+        //     .then(data => {
+        //         console.log(data);  // 데이터 확인
+        //         // 카테고리 리스트를 select 요소에 추가
+        //         const categorySelect = document.getElementById('category-select'); // HTML 요소 선택
+        //         data.forEach(category => {
+        //             const option = document.createElement('option'); // option 요소 생성
+        //             option.value = category.product_category_pk; // value로 pk 값을 설정
+        //             option.textContent = category.product_category_name; // 표시할 텍스트로 카테고리 이름 설정
+        //             categorySelect.appendChild(option); // select에 option 추가
+        //         });
+        //     })
+        //     .catch(error => {
+        //         console.error('There has been a problem with your fetch operation:', error);
+        //     });
         // ------------ 정상가, 판매가, 할인율에 따른 값 채워짐 --------------------------
         // 정상가
         const productNomalPrice = $('#product-normal-price');
