@@ -2,12 +2,38 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.nutrihub.admin.mapper.AdminSqlMapper">
 
-    <insert id="ProductRegister">
+    <insert id="ProductRegister" useGeneratedKeys="true" keyProperty="product_pk">
         INSERT INTO product (product_category_pk, product_name, representative_image, detailed_image1, detailed_image2, detailed_image3, content, price, sale_price, sale_percent, stock)
         VALUES (#{product_category_pk}, #{product_name}, #{representative_image}, #{detailed_image1}, #{detailed_image2}, #{detailed_image3}, #{content}, #{price}, #{sale_price}, #{sale_percent}, #{stock});
     </insert>
 
+
+    <insert id ="ShippingAddressRegister">
+        insert into shipping_address (shipping_address_pk,product_pk,shipping_address_name,shipping_post_number,
+                                      shipping_representative_address,shipping_detail_address,shipping_phone_number,shipping_extra_phone_number)
+        values(
+                  #{shipping_address_pk},#{product_pk},#{shipping_address_name},#{shipping_post_number},
+                  #{shipping_representative_address},#{shipping_detail_address},#{shipping_phone_number},#{shipping_extra_phone_number})
+    </insert>
+
+    <insert id ="RefundAddressRegister">
+        insert into refund_address (
+            refund_address_pk, product_pk, refund_address_name, refund_address_post_number,
+            refund_representative_address, refund_detail_address, refund_phone_number, refund_extra_phone_number
+        )
+        values(
+                  #{refund_address_pk}, #{product_pk}, #{refund_address_name}, #{refund_address_post_number},
+                  #{refund_representative_address}, #{refund_detail_address}, #{refund_phone_number}, #{refund_extra_phone_number}
+              );
+    </insert>
+
+
     <select id ="ProductCategoryList" resultType="com.nutrihub.admin.dto.ProductCategoryDto">
         select * from product_category;
     </select>
+
+    <select id ="ProductMaxPk" resultType ="integer">
+        select MAX(product_pk) from product p;
+    </select>
+
 </mapper>

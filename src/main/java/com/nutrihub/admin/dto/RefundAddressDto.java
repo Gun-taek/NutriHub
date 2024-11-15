@@ -3,7 +3,7 @@ package com.nutrihub.admin.dto;
 import lombok.Data;
 
 @Data
-public class RefundAddress {
+public class RefundAddressDto {
 
     private int refund_address_pk;
     private int product_pk;

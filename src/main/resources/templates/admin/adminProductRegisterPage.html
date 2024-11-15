@@ -192,21 +192,6 @@
                                 </div>
                                 <div class="col"style="background-color: white"></div>
                             </div>
-
-<!--                            <div class="row  border-bottom border-start border-end" style="height:10vh">-->
-<!--                                <div class="col-2 pt-0 d-flex justify-content-center align-items-center" style="border-right: 1px solid #DEE2E6; padding-top:1.9em;">-->
-<!--                                  <span class="noto-sans" style="font-size: 1em; color:darkgray;font-weight: bold ">-->
-<!--                                        브랜드-->
-<!--                                    </span>-->
-<!--                                    <span class="noto-sans" style="font-size: 1em; color:orangered;font-weight: bold" >*</span>-->
-<!--                                </div>-->
-
-<!--                                <div class="col-4 ps-4 d-flex justify-content-center align-items-center" style="background-color: white">-->
-<!--                                    <input class="form-control" placeholder="브랜드명 입력" style="text-align:center;">-->
-<!--                                </div>-->
-<!--                                <div class="col"style="background-color: white"></div>-->
-<!--                            </div>-->
-
                             <div class="row mt-5">
                                 <div class="col">
                                     <span class="noto-sans" style="font-size: 1.6em ; font-weight: bold">대표 가격 정보</span>
@@ -278,7 +263,7 @@
                                              style="width:auto; height: 10vh; cursor: pointer">
                                     </label>
                                     <!-- 대표 이미지 image만 accept 되게..... -->
-                                    <input type="file" accept="image/*" class="representative-image" id="representative-image" style="display: none" name="represent_image">
+                                    <input type="file" accept="image/*" class="representative-image" id="representative-image" style="visibility: hidden" name="represent_image">
                                 </div>
                             </div>
                             <!-- ------------------------------------ -->
@@ -295,7 +280,7 @@
                                     <label for="detailed-image">
                                         <img th:src="@{/public/image/adminProductRegisterPage/photo_logo.png}" style="width:auto; height: 10vh; cursor: pointer;">
                                     </label>
-                                    <input type="file" multiple="multiple" accept="image/*" class="detailed-image" id="detailed-image" style="display: none;" name="detailed_images">
+                                    <input type="file" multiple="multiple" accept="image/*" class="detailed-image" id="detailed-image" style="visibility: hidden" name="detailed_images">
                                 </div>
                             </div>
 
@@ -382,17 +367,17 @@
                             </div>
                         </div>
                     </div>
-                    </form>
-
 
                     <div class="row mt-4">
                         <div class="col-9">
                         </div>
                         <div class="col-3 d-flex justify-content-center">
-                            <input type="button" class="form-sell-button" value="판매요청" onclick="ReisgerProduct()" >
+                            <input type="button" class="form-sell-button" value="판매요청" onclick="RegisterProduct()">
                         </div>
                     </div>
+                    </form>
                 </div>
+
             </div>
         </div>
     </div>
@@ -427,7 +412,7 @@
                 <p class="noto-sans" style="">주소지명</p>
             </div>
             <div class="col-7">
-                <input style="width:60%;" class="form-control" type="text" placeholder="주소지명을 입력해주세요" name ="shipping_address_name">
+                <input style="width:60%;" class="form-control" type="text" placeholder="주소지명을 입력해주세요" name ="shipping_address_name" id ="shipping_address_name">
             </div>
         </div>
         <div class="row mt-3">
@@ -436,7 +421,7 @@
                 <p class="noto-sans" style="">우편 번호</p>
             </div>
             <div class="col-3">
-                <input style="background-color: #EEEEEE;" class="form-control" type="text" placeholder="3~6글자로 입력" disabled ="disabled" id ="shipping_post_number"
+                <input style="background-color: #EEEEEE;" class="form-control" type="text" placeholder="3~6글자로 입력" id ="shipping_post_number"
                 name="shipping_post_number">
             </div>
             <div class="col-4">
@@ -452,8 +437,8 @@
             </div>
 
             <div class="col-7">
-                <input style="background-color: #EEEEEE; width:60%;" class="form-control" type="text" placeholder="기본주소를 입력해주세요." disabled = "disabled"
-                       id="release-address" name ="shipping_representative_address">
+                <input style="background-color: #EEEEEE; width:60%;" class="form-control" type="text" placeholder="기본주소를 입력해주세요."
+                       id="shipping_representative_address" name ="shipping_representative_address">
             </div>
         </div>
         <div class="row mt-3">
@@ -462,7 +447,7 @@
 
             </div>
             <div class="col-7">
-                <input style="width:60%;" class="form-control" type="text" placeholder="상세 주소를 입력해주세요" id="release-detail-address" name="shipping_detail_address">
+                <input style="width:60%;" class="form-control" type="text" placeholder="상세 주소를 입력해주세요" id="shipping_detail_address" name="shipping_detail_address">
             </div>
         </div>
 
@@ -472,7 +457,8 @@
                 <p class="noto-sans" style="">전화번호</p>
             </div>
             <div class="col-7">
-                <input style="width:60%;" class="form-control" type="tel" pattern="[0-9]{3}-[0-9]{4}-[0-9]{4}" required  placeholder="010-1234-5678" name="shipping_phone_number">
+                <input style="width:60%;" class="form-control" type="tel" pattern="[0-9]{3}-[0-9]{4}-[0-9]{4}" required  placeholder="010-1234-5678" name="shipping_phone_number"
+                id ="shipping_phone_number">
             </div>
         </div>
         <div class="row mt-3">
@@ -481,14 +467,14 @@
                 <p class="noto-sans" style="">추가 전화번호</p>
             </div>
             <div class="col-7">
-                <input style="width:60%;" class="form-control" type="tel" pattern="[0-9]{3}-[0-9]{4}-[0-9]{4}" required placeholder="010-1234-5678" name="shipping_extra_phone_number">
+                <input style="width:60%;" class="form-control" type="tel" pattern="[0-9]{3}-[0-9]{4}-[0-9]{4}" required placeholder="010-1234-5678" name="shipping_extra_phone_number" id ="shipping_extra_phone_number">
             </div>
         </div>
         <div class="row mt-3 border-top"></div>
         <div class="row mt-4 ">
             <div class="col-8"></div>
             <div class="col-2 p-0"><button class="btn btn-close-modal-release-address" style="width:75%;border: 1px solid #D9D9D9;">취소</button> </div>
-            <div class="col-2 p-0"><button class="btn btn-success" style="width:75%">등록</button> </div>
+            <div class="col-2 p-0"><button class="btn btn-success btn-register-release-address" style="width:75%">등록</button> </div>
         </div>
     </div>
 </div>
@@ -520,7 +506,7 @@
                 <p class="noto-sans" style="">주소지명</p>
             </div>
             <div class="col-7">
-                <input style="width:60%;" class="form-control" type="text" placeholder="주소지명을 입력해주세요" name="refund_address_name">
+                <input style="width:60%;" class="form-control" type="text" placeholder="주소지명을 입력해주세요" name="refund_address_name" id ="refund_address_name">
             </div>
         </div>
         <div class="row mt-3">
@@ -530,7 +516,7 @@
             </div>
             <div class="col-3">
                 <!-- 여기가 우편 번호 보여주는 곳-->
-                <input style="background-color: #EEEEEE;" class="form-control" type="text" placeholder="3~6글자로 입력" disabled ="disabled" id ="return-address-postcode"
+                <input style="background-color: #EEEEEE;" class="form-control" type="text" placeholder="3~6글자로 입력" id ="refund_address_post_number"
                 name="refund_address_post_number"
                 >
             </div>
@@ -546,8 +532,8 @@
             </div>
             <!-- 대표 주소 -->
             <div class="col-7">
-                <input style="background-color: #EEEEEE; width:60%;" class="form-control" type="text" placeholder="기본주소를 입력해주세요." disabled = "disabled"
-                       id="return-address" name="refund_representative_address">
+                <input style="background-color: #EEEEEE; width:60%;" class="form-control" type="text" placeholder="기본주소를 입력해주세요."
+                       id="refund_representative_address" name="refund_representative_address">
             </div>
         </div>
         <div class="row mt-3">
@@ -555,7 +541,7 @@
             <div class="col-4">
             </div>
             <div class="col-7">
-                <input style="width:60%;" class="form-control" type="text" placeholder="상세 주소를 입력해주세요" id="return-detail-address" name="refund_detail_address">
+                <input style="width:60%;" class="form-control" type="text" placeholder="상세 주소를 입력해주세요" id="refund_detail_address" name="refund_detail_address">
             </div>
         </div>
 
@@ -565,7 +551,7 @@
                 <p class="noto-sans" style="">전화번호</p>
             </div>
             <div class="col-7">
-                <input style="width:60%;" class="form-control" type="tel" pattern="[0-9]{3}-[0-9]{4}-[0-9]{4}" required placeholder="010-1234-5678" name="refund_phone_number">
+                <input style="width:60%;" class="form-control" type="tel" pattern="[0-9]{3}-[0-9]{4}-[0-9]{4}" required placeholder="010-1234-5678" name="refund_phone_number" id ="refund_phone_number">
             </div>
         </div>
         <div class="row mt-3">
@@ -574,14 +560,14 @@
                 <p class="noto-sans" style="">추가 전화번호</p>
             </div>
             <div class="col-7">
-                <input style="width:60%;" class="form-control" type="tel" pattern="[0-9]{3}-[0-9]{4}-[0-9]{4}" required placeholder="010-1234-5678" name="refund_extra_phone_number">
+                <input style="width:60%;" class="form-control" type="tel" pattern="[0-9]{3}-[0-9]{4}-[0-9]{4}" required placeholder="010-1234-5678" name="refund_extra_phone_number" id ="refund_extra_phone_number">
             </div>
         </div>
         <div class="row mt-3 border-top"></div>
         <div class="row mt-4 ">
             <div class="col-8"></div>
             <div class="col-2 p-0"><button class="btn btn-close-modal-exchange-address-content" style="width:75%;border: 1px solid #D9D9D9;">취소</button> </div>
-            <div class="col-2 p-0"><button class="btn btn-success" style="width:75%">등록</button> </div>
+            <div class="col-2 p-0"><button class="btn btn-success btn-register-refund-address" style="width:75%">등록</button> </div>
         </div>
     </div>
 </div>
@@ -604,6 +590,8 @@
 
     // 배송지 Daum 주소 API 함수
     // data.apartment: 공동주택 여부 (공동주택이면 'Y')
+
+    // 출고지 다음 API
     function DaumDeliveryPostcode() {
         new daum.Postcode({
             oncomplete: function(data) { // data 객체로 전달
@@ -627,14 +615,14 @@
                         extraAddr = ' (' + extraAddr + ')';
                     }
                 } else {
-                    document.getElementById("release-detail-address").value = '';
+                    document.getElementById("shipping_detail_address").value = '';
                 }
                 // 우편번호와 주소 정보를 해당 필드에 넣는다.
-                document.getElementById('release-address-postcode').value = data.zonecode;
-                document.getElementById("release-address").value = addr;
-                document.getElementById("release-detail-address").value = extraAddr;
+                document.getElementById('shipping_post_number').value = data.zonecode;
+                document.getElementById("shipping_representative_address").value = addr;
+                document.getElementById("shipping_detail_address").value = extraAddr;
                 // 커서를 상세주소 필드로 이동한다.
-                document.getElementById("release-detail-address").focus();
+                document.getElementById("shipping_detail_address").focus();
                 // 팝업을 닫는다.
                 window.close(); // 주소 선택 후 팝업 닫기
             }
@@ -664,21 +652,26 @@
                         extraAddr = ' (' + extraAddr + ')';
                     }
                 } else {
-                    document.getElementById("release-detail-address").value = '';
+                    document.getElementById("refund_detail_address").value = '';
                 }
                 // 우편번호와 주소 정보를 해당 필드에 넣는다.
-                document.getElementById('return-address-postcode').value = data.zonecode;
-                document.getElementById("return-address").value = addr;
-                document.getElementById("return-detail-address").value = extraAddr;
+                document.getElementById('refund_address_post_number').value = data.zonecode;
+                document.getElementById("refund_representative_address").value = addr;
+                document.getElementById("refund_detail_address").value = extraAddr;
                 // 커서를 상세주소 필드로 이동한다.
-                document.getElementById("return-detail-address").focus();
+                document.getElementById("refund_detail_address").focus();
                 // 팝업을 닫는다.
                 window.close(); // 주소 선택 후 팝업 닫기
             }
         }).open(); // 이 호출은 필요합니다.
     }
-    function ReisgerProduct(){
+    function RegisterProduct(){
         const RegisterProductForm = $('#productRegister');
+
+
+        console.log(document.getElementById('refund_address_post_number').value);
+        console.log(document.getElementById("refund_representative_address").value);
+        console.log(document.getElementById("refund_detail_address").value);
         RegisterProductForm.submit();
     }
     // DOM이 준비된 후 코드 실행 (jQuery 사용)
@@ -688,31 +681,6 @@
             language: 'ko',
             height: 250
         });
-
-
-        // // Fetch API를 사용하여 상품 카테고리 목록 요청
-        // fetch('/NutriHub/Admin/API/ProductCategoryList')
-        //     .then(response => {
-        //         if (!response.ok) { // 에러 발생시
-        //             throw new Error('Network response was not ok');
-        //         }
-        //         return response.json();
-        //     })
-        //     .then(data => {
-        //         console.log(data);  // 데이터 확인
-        //         // 카테고리 리스트를 select 요소에 추가
-        //         const categorySelect = document.getElementById('category-select'); // HTML 요소 선택
-        //         data.forEach(category => {
-        //             const option = document.createElement('option'); // option 요소 생성
-        //             option.value = category.product_category_pk; // value로 pk 값을 설정
-        //             option.textContent = category.product_category_name; // 표시할 텍스트로 카테고리 이름 설정
-        //             categorySelect.appendChild(option); // select에 option 추가
-        //         });
-        //     })
-        //     .catch(error => {
-        //         console.error('There has been a problem with your fetch operation:', error);
-        //     });
-        // ------------ 정상가, 판매가, 할인율에 따른 값 채워짐 --------------------------
         // 정상가
         const productNomalPrice = $('#product-normal-price');
         // 판매가격 (정상가 * (1-할인율)
@@ -765,18 +733,58 @@
         // 모달 닫기 버튼 클릭 이벤트 등록 = fadeOut = 서서히 사라지는 애니메이션 이벤트
 
         $('.btn-open-modal-release-address').click(function(){
-            $('.modal-release-address').fadeIn();
+            $('.modal-release-address').css({
+                visibility: 'visible',
+                opacity: '1'
+            });
         });
         $('.btn-close-modal-release-address').click(function(){
-            $('.modal-release-address').fadeOut();
-        });
-        // -----------------------------------------------
+            $('.modal-release-address').css({
+                visibility: 'hidden',
+                opacity: '0'
+            });
+
+            // $('#shipping_address_name').val(null);
+            // $('#shipping_post_number').val(null);
+            // $('#shipping_representative_address').val(null);
+            // $('#shipping_detail_address').val(null);
+            // $('#shipping_phone_number').val(null);
+            // $('#shipping_extra_phone_number').val(null);
+        })
+        $('.btn-register-release-address').click(function(){
+            $('.modal-release-address').css({
+                visibility: 'hidden',
+                opacity: '0'
+            });
+        })
         // ---------------- 반품 / 교환지 모달 이벤트-------------
         $('.btn-open-modal-exchange-address').click(function(){
-            $('.modal-exchange-address').fadeIn();
+            $('.modal-exchange-address').css({
+                visibility: 'visible',
+                opacity: '1'
+            });
         });
+
+        // -- 등록 버튼
+        $('.btn-register-refund-address').click(function(){
+            $('.modal-exchange-address').css({
+                visibility: 'hidden',
+                opacity: '0'
+            });
+        });
+
+        // -- 취소 버튼
         $('.btn-close-modal-exchange-address-content').click(function(){
-            $('.modal-exchange-address').fadeOut();
+            $('.modal-exchange-address').css({
+                visibility: 'hidden',
+                opacity: '0 '
+            });
+            // $('#refund_address_name').val(null);
+            // $('#refund_address_post_number').val(null);
+            // $('#refund_representative_address').val(null);
+            // $('#refund_detail_address').val(null);
+            // $('#refund_phone_number').val(null);
+            // $('#refund_extra_phone_number').val(null);
         })
         // -----------------------------------------------
     });

@@ -74,13 +74,15 @@ width: 100% 를 주어서 모든 배경색을 칠해지게 한다. 즉
 width: 100% 가 필수다.
  */
 .modal-release-address{
-    display:none;
-    position:fixed;
-    top:0;
-    left:0;
-    background-color: rgba(0,0,0,0.4);
-    height:100vh;
-    width:100%;
+    visibility: hidden; /* 처음에는 숨김 */
+    opacity: 0; /* 투명도 0 */
+    position: fixed;
+    top: 0;
+    left: 0;
+    background-color: rgba(0, 0, 0, 0.4);
+    height: 100vh;
+    width: 100%;
+    transition: visibility 0s, opacity 0.3s ease; /* 애니메이션 추가 */
 }
 /*
 검은색 배경 창 안의 모달 컨텐츠이다.
@@ -94,14 +96,14 @@ transform를 통하여 -50, -50 으로
 */
 .modal-release-address-content{
     background-color: #fff;
-    width:50%;
+    width: 50%;
     border-radius: 10px;
-    position:absolute;
-    top:50%;
-    left:50%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
     transform: translate(-50%, -50%);
-    padding:30px;
-    box-shadow: 0 0 15px rgba(0,0,0,0.15);
+    padding: 30px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.15);
 }
 
 /* 모달을 감싸는 화면 즉 FadeIn() 되는 화면의 전체다
@@ -109,13 +111,15 @@ transform를 통하여 -50, -50 으로
 화면은 고정이며 처음은 none으로 안보이게
 */
 .modal-exchange-address{
-    display:none;
-    position:fixed;
-    top:0;
-    left:0;
-    background-color: rgba(0,0,0,0.4);
-    height:100vh;
-    width:100%;
+    visibility: hidden; /* 처음에는 숨김 */
+    opacity: 0; /* 투명도 0 */
+    position: fixed;
+    top: 0;
+    left: 0;
+    background-color: rgba(0, 0, 0, 0.4);
+    height: 100vh;
+    width: 100%;
+    transition: visibility 0s, opacity 0.3s ease; /* 애니메이션 추가 */
 }
 
 /*
@@ -123,14 +127,14 @@ transform를 통하여 -50, -50 으로
 */
 .modal-exchange-address-content{
     background-color: #fff;
-    width:50%;
+    width: 50%;
     border-radius: 10px;
-    position:absolute;
-    top:50%;
-    left:50%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
     transform: translate(-50%, -50%);
-    padding:30px;
-    box-shadow: 0 0 15px rgba(0,0,0,0.15);
+    padding: 30px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.15);
 }
 
 

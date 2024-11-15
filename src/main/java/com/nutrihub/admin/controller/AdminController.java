@@ -1,24 +1,20 @@
 package com.nutrihub    .admin.controller;
 import com.nutrihub.admin.dto.ProductCategoryDto;
 import com.nutrihub.admin.dto.ProductDto;
+import com.nutrihub.admin.dto.RefundAddressDto;
+import com.nutrihub.admin.dto.ShippingAddressDto;
 import com.nutrihub.admin.service.AdminServiceImpl;
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.File;
-import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
-import java.nio.file.StandardCopyOption;
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 import java.util.UUID;
+
+import static org.apache.coyote.http11.Constants.a;
 
 @Controller
 @RequestMapping("/NutriHub/Admin/*")
@@ -46,10 +42,11 @@ public class AdminController {
     // 상품 등록 요청 보내기
     @RequestMapping("ProductRegister")
     public String ProductRegister(
-            ProductDto productDto,
+            @ModelAttribute ShippingAddressDto shippingAddressDto, // ShippingAddressDto를 Model로 전달
+            @ModelAttribute RefundAddressDto refundAddressDto,
+            @ModelAttribute ProductDto productDto,
             @RequestParam("represent_image") MultipartFile representativeImage,
-            @RequestParam("detailed_images") List<MultipartFile> detailedImages
-    ) throws Exception{
+            @RequestParam("detailed_images") List<MultipartFile> detailedImages) throws Exception{
         // 서버에 이미지 파일을 저장할 경로
         String imagePath = System.getProperty("user.dir") + "\\src\\main\\resources\\static\\public\\userUploadImages";
 
@@ -90,8 +87,9 @@ public class AdminController {
                 }
             }
         }
-        System.out.println(productDto);
         // 작업 후 리턴 (업로드 완료 후 페이지로 이동)
+        // DTO 설정 후 상품 등록
+        adminService.ProductRegister(productDto, shippingAddressDto, refundAddressDto);
         return "/admin/adminMainPage";
     }
 
