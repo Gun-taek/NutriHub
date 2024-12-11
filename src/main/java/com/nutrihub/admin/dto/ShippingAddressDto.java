@@ -1,5 +1,8 @@
 package com.nutrihub.admin.dto;
 import lombok.Data;
+
+import java.util.Date;
+
 @Data
 public class ShippingAddressDto {
     private int shipping_address_pk;
@@ -10,4 +13,5 @@ public class ShippingAddressDto {
     private String shipping_detail_address;
     private String shipping_phone_number;
     private String shipping_extra_phone_number;
+    private Date created_at;
 }

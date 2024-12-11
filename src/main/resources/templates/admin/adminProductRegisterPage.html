@@ -14,10 +14,14 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Orbit&display=swap" rel="stylesheet">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
     <!-- 위지윅 에디터 = CKEditor5 갖고옴 -> CDN방식 -->
     <script src="https://cdn.ckeditor.com/ckeditor5/39.0.1/classic/ckeditor.js"></script>
     <script src="https://cdn.ckeditor.com/ckeditor5/39.0.1/classic/translations/ko.js"></script>
     <title>adminProductRegisterPage</title>
+
+    <link rel="icon" href="/favicon.ico" type="image/x-icon">
+
     <style>
         .ck.ck-editor{
             min-height: 30em;
@@ -163,7 +167,7 @@
                                     <!--                                    <input class="mt-3 ps-4" type="text" placeholder="카테고리명 입력"-->
                                     <!--                                           style="width:50%;height:30% ;border-radius:0.5em; border: 1px solid darkgray;">-->
 
-                                    <select class="form-select" name="product_category_pk" id="category-select" style="text-align: center;">
+                                    <select class="form-select" name="product_category_pk" id="category-select" style="text-align: center;" >
                                         <option value="" disabled selected>선택해주세요</option>
                                         <!-- productCategoryList의 각 요소를 option 태그로 변환 -->
                                         <th:block th:each="category : ${productCategoryList}">
@@ -188,7 +192,7 @@
                                 </div>
 
                                 <div class="col-4 ps-4 d-flex justify-content-center align-items-center" style="background-color: white">
-                                    <input class="form-control" placeholder="상품명 입력" style="text-align: center" name="product_name">
+                                    <input class="form-control" placeholder="상품명 입력" style="text-align: center" name="product_name" id ="product_name">
                                 </div>
                                 <div class="col"style="background-color: white"></div>
                             </div>
@@ -317,7 +321,7 @@
                                 </div>
 
                                 <div class="col-4 ps-4 d-flex justify-content-center align-items-center" style="background-color: white">
-                                    <input type="number" class="form-control" placeholder="상품 개수 입력" style="text-align: center" name = "stock">
+                                    <input type="number" class="form-control" placeholder="상품 개수 입력" style="text-align: center" name = "stock" id="stock">
                                 </div>
                                 <div class="col" style="background-color: white">
                                 </div>
@@ -421,7 +425,7 @@
                 <p class="noto-sans" style="">우편 번호</p>
             </div>
             <div class="col-3">
-                <input style="background-color: #EEEEEE;" class="form-control" type="text" placeholder="3~6글자로 입력" id ="shipping_post_number"
+                <input style="background-color: #EEEEEE;" class="form-control" type="text" placeholder="3~6글자로 입력" id ="shipping_post_number" disabled="disabled"
                 name="shipping_post_number">
             </div>
             <div class="col-4">
@@ -437,7 +441,7 @@
             </div>
 
             <div class="col-7">
-                <input style="background-color: #EEEEEE; width:60%;" class="form-control" type="text" placeholder="기본주소를 입력해주세요."
+                <input style="background-color: #EEEEEE; width:60%;" class="form-control" type="text" placeholder="기본주소를 입력해주세요." disabled="disabled"
                        id="shipping_representative_address" name ="shipping_representative_address">
             </div>
         </div>
@@ -516,7 +520,7 @@
             </div>
             <div class="col-3">
                 <!-- 여기가 우편 번호 보여주는 곳-->
-                <input style="background-color: #EEEEEE;" class="form-control" type="text" placeholder="3~6글자로 입력" id ="refund_address_post_number"
+                <input style="background-color: #EEEEEE;" class="form-control" type="text" placeholder="3~6글자로 입력" id ="refund_address_post_number" disabled="disabled"
                 name="refund_address_post_number"
                 >
             </div>
@@ -532,7 +536,7 @@
             </div>
             <!-- 대표 주소 -->
             <div class="col-7">
-                <input style="background-color: #EEEEEE; width:60%;" class="form-control" type="text" placeholder="기본주소를 입력해주세요."
+                <input style="background-color: #EEEEEE; width:60%;" class="form-control" type="text" placeholder="기본주소를 입력해주세요." disabled="disabled"
                        id="refund_representative_address" name="refund_representative_address">
             </div>
         </div>
@@ -572,6 +576,9 @@
     </div>
 </div>
 
+
+
+<input type ="hidden" name ="content" id ="hidden-content">
 
 
 
@@ -623,8 +630,7 @@
                 document.getElementById("shipping_detail_address").value = extraAddr;
                 // 커서를 상세주소 필드로 이동한다.
                 document.getElementById("shipping_detail_address").focus();
-                // 팝업을 닫는다.
-                window.close(); // 주소 선택 후 팝업 닫기
+
             }
         }).open(); // 이 호출은 필요합니다.
     }
@@ -660,26 +666,86 @@
                 document.getElementById("refund_detail_address").value = extraAddr;
                 // 커서를 상세주소 필드로 이동한다.
                 document.getElementById("refund_detail_address").focus();
-                // 팝업을 닫는다.
-                window.close(); // 주소 선택 후 팝업 닫기
+                // 팝업 닫기는 필요 없음 (자동으로 닫힘)
             }
         }).open(); // 이 호출은 필요합니다.
     }
-    function RegisterProduct(){
-        const RegisterProductForm = $('#productRegister');
+
+    async function RegisterProduct() {
+        const formData = new FormData();
+        formData.append("product_category_pk", document.getElementById("category-select").value);
+        formData.append("product_name", document.getElementById("product_name").value);
+        formData.append("price", document.getElementById("product-normal-price").value);
+        formData.append("sale_percent", document.getElementById("product-discount-rate").value);
+        formData.append("sale_price", document.getElementById("product-selling-price").value);
+        formData.append("stock", document.getElementById("stock").value);
+        // formData.append("represent_image", document.getElementById("representative-image").value);
+        // formData.append("detailed_images", document.getElementById("detailed-image").value);
+
+        // 전역 변수로 선언된 editor에서 CKEditor 데이터 가져오기
+        const editorData = editor.getData();  // 이미 초기화된 editor에서 데이터 가져오기
+        document.getElementById("hidden-content").value = editorData;
+        formData.append("content", editorData);  // content 필드에 데이터 추가
 
 
-        console.log(document.getElementById('refund_address_post_number').value);
-        console.log(document.getElementById("refund_representative_address").value);
-        console.log(document.getElementById("refund_detail_address").value);
-        RegisterProductForm.submit();
-    }
+        formData.append("shipping_address_name", document.getElementById("shipping_address_name").value);
+        formData.append("shipping_post_number", document.getElementById("shipping_post_number").value);
+        formData.append("shipping_representative_address", document.getElementById("shipping_representative_address").value);
+        formData.append("shipping_detail_address", document.getElementById("shipping_detail_address").value);
+        formData.append("shipping_phone_number", document.getElementById("shipping_phone_number").value);
+        formData.append("shipping_extra_phone_number", document.getElementById("shipping_extra_phone_number").value);
+
+        formData.append("refund_address_name", document.getElementById("refund_address_name").value);
+        formData.append("refund_address_post_number", document.getElementById("refund_address_post_number").value);
+        formData.append("refund_representative_address", document.getElementById("refund_representative_address").value);
+        formData.append("refund_detail_address", document.getElementById("refund_detail_address").value);
+        formData.append("refund_phone_number", document.getElementById("refund_phone_number").value);
+        formData.append("refund_extra_phone_number", document.getElementById("refund_extra_phone_number").value);
+
+        const representImage = document.getElementById("representative-image").files[0];
+        if (representImage) {
+            formData.append("represent_image", representImage);  // 'represent_image' 이름으로 파일 추가
+        }
+
+        const detailedImages = document.getElementById("detailed-image").files;
+        for (let i = 0; i < detailedImages.length; i++) {
+            formData.append("detailed_images", detailedImages[i]);
+        }
+        // 필드들 추가
+
+        try {
+            const response = await fetch('./ProductRegister', {
+                method: 'POST',
+                body: formData,
+            });
+
+            if (!response.ok) {
+                console.log('서버 응답이 좋지 않음:', response.status);
+                const errorText = await response.text(); // HTML 응답이 있을 경우
+                console.log(errorText); // 서버에서 반환한 에러 페이지 확인
+                alert('내용을 등록해주세요')
+            } else { // 요청 성공시
+                const data = await response.json();
+                alert('상품 등록이 완료되었습니다.');
+                window.location.reload();
+            }
+        } catch (error) {
+            console.error('서버와 통신 중 문제가 발생했습니다.', error);
+            alert('에러가 발생했습니다.')
+            window.location.reload();
+        }
+        }
+
     // DOM이 준비된 후 코드 실행 (jQuery 사용)
     $(document).ready(function() {
         // CkEditor5 사용
         ClassicEditor.create(document.querySelector('#product-description'), {
             language: 'ko',
             height: 250
+        }).then((initializedEditor) => {
+            editor = initializedEditor;  // 전역 변수에 CKEditor 인스턴스를 저장, editor = 전역변수
+        }).catch((error) => {
+            console.error("CKEditor 초기화 실패", error);
         });
         // 정상가
         const productNomalPrice = $('#product-normal-price');

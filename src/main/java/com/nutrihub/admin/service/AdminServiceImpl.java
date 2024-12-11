@@ -29,8 +29,6 @@ public class AdminServiceImpl {
         refundAddressDto.setProduct_pk(productPk); // 외래키 설정
         adminSqlMapper.RefundAddressRegister(refundAddressDto);  // 반송지 등록
 
-
-        System.out.println(productPk);
     }
     public void ShippingAddressRegister(ShippingAddressDto shippingAddressDto) {adminSqlMapper.ShippingAddressRegister(shippingAddressDto);}
     public void RefundAddressRegister(RefundAddressDto refundAddressDto){adminSqlMapper.RefundAddressRegister(refundAddressDto);}

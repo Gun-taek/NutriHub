@@ -2,6 +2,8 @@ package com.nutrihub.admin.dto;
 
 import lombok.Data;
 
+import java.util.Date;
+
 @Data
 public class RefundAddressDto {
 
@@ -13,4 +15,5 @@ public class RefundAddressDto {
     private String refund_detail_address;
     private String refund_phone_number;
     private String refund_extra_phone_number;
+    private Date created_at;
 }

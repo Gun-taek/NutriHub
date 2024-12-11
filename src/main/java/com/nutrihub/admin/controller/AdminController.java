@@ -1,9 +1,12 @@
-package com.nutrihub    .admin.controller;
+package com.nutrihub.admin.controller;
+
 import com.nutrihub.admin.dto.ProductCategoryDto;
 import com.nutrihub.admin.dto.ProductDto;
 import com.nutrihub.admin.dto.RefundAddressDto;
 import com.nutrihub.admin.dto.ShippingAddressDto;
 import com.nutrihub.admin.service.AdminServiceImpl;
+//import org.springframework.security.core.parameters.P;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
@@ -11,7 +14,9 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.File;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.UUID;
 
 import static org.apache.coyote.http11.Constants.a;
@@ -20,36 +25,82 @@ import static org.apache.coyote.http11.Constants.a;
 @RequestMapping("/NutriHub/Admin/*")
 public class AdminController {
     private final AdminServiceImpl adminService;
-    public AdminController(AdminServiceImpl adminService){
+
+    public AdminController(AdminServiceImpl adminService) {
         this.adminService = adminService;
     }
+
     // 관리자 메인 페이지 포워딩
     @RequestMapping("MainPage")
-    public String MainPage(){
+    public String MainPage() {
         return "/admin/adminMainPage";
     }
 
     @RequestMapping("ProductRegisterPage")
-    public String ProductRegisterPage (Model model) {
+    public String ProductRegisterPage(Model model) {
         // 카테고리 리스트 Model 통해 전달
         List<ProductCategoryDto> CategoryList = adminService.ProductCategoryList();
         model.addAttribute("productCategoryList", CategoryList);
         return "/admin/adminProductRegisterPage";
     }
     //관리 카테고리 종류 리스트로 받아오기
-
-
     // 상품 등록 요청 보내기
+
+
     @RequestMapping("ProductRegister")
-    public String ProductRegister(
-            @ModelAttribute ShippingAddressDto shippingAddressDto, // ShippingAddressDto를 Model로 전달
-            @ModelAttribute RefundAddressDto refundAddressDto,
-            @ModelAttribute ProductDto productDto,
+    public ResponseEntity<Map<String, Object>> ProductRegister(
+            @RequestParam("product_category_pk") int product_category_pk,
+            @RequestParam("product_name") String name,
+            @RequestParam("price") int price,
+            @RequestParam("sale_percent") int sale_percent,
+            @RequestParam("sale_price") int sale_price,
+            @RequestParam("content") String content,
+            @RequestParam("stock") int stock,
             @RequestParam("represent_image") MultipartFile representativeImage,
-            @RequestParam("detailed_images") List<MultipartFile> detailedImages) throws Exception{
+            @RequestParam("detailed_images") List<MultipartFile> detailedImages,
+            @ModelAttribute
+            @RequestParam("shipping_address_name") String shipping_address_name,
+            @RequestParam("shipping_post_number") String shipping_post_number,
+            @RequestParam("shipping_representative_address") String shipping_representative_address,
+            @RequestParam("shipping_detail_address") String shipping_detail_address,
+            @RequestParam("shipping_phone_number") String shipping_phone_number,
+            @RequestParam("shipping_extra_phone_number") String shipping_extra_phone_number,
+
+            @RequestParam("refund_address_name") String refund_address_name,
+            @RequestParam("refund_address_post_number") String refund_address_post_number,
+            @RequestParam("refund_representative_address") String refund_representative_address,
+            @RequestParam("refund_detail_address") String refund_detail_address,
+            @RequestParam("refund_phone_number") String refund_phone_number,
+            @RequestParam("refund_extra_phone_number") String refund_extra_phone_number
+    ) throws Exception {
+
+        ProductDto productDto = new ProductDto();
+        productDto.setProduct_category_pk(product_category_pk);
+        productDto.setProduct_name(name);
+        productDto.setPrice(price);
+        productDto.setSale_percent(sale_percent);
+        productDto.setSale_price(sale_price);
+        productDto.setContent(content);
+        productDto.setStock(stock);
+
+        ShippingAddressDto shippingAddressDto = new ShippingAddressDto();
+        shippingAddressDto.setShipping_address_name(shipping_address_name);
+        shippingAddressDto.setShipping_post_number(shipping_post_number);
+        shippingAddressDto.setShipping_representative_address(shipping_representative_address);
+        shippingAddressDto.setShipping_detail_address(shipping_detail_address);
+        shippingAddressDto.setShipping_phone_number(shipping_phone_number);
+        shippingAddressDto.setShipping_extra_phone_number(shipping_extra_phone_number);
+
+        RefundAddressDto refundAddressDto = new RefundAddressDto();
+        refundAddressDto.setRefund_address_name(refund_address_name);
+        refundAddressDto.setRefund_address_post_number(refund_address_post_number);
+        refundAddressDto.setRefund_representative_address(refund_representative_address);
+        refundAddressDto.setRefund_detail_address(refund_detail_address);
+        refundAddressDto.setRefund_phone_number(refund_phone_number);
+        refundAddressDto.setRefund_extra_phone_number(refund_extra_phone_number);
+
         // 서버에 이미지 파일을 저장할 경로
         String imagePath = System.getProperty("user.dir") + "\\src\\main\\resources\\static\\public\\userUploadImages";
-
         // 대표 이미지 처리
         if (!representativeImage.isEmpty()) {
             UUID uuid = UUID.randomUUID(); // 대표 이미지용 UUID 생성
@@ -87,11 +138,24 @@ public class AdminController {
                 }
             }
         }
+
         // 작업 후 리턴 (업로드 완료 후 페이지로 이동)
         // DTO 설정 후 상품 등록
+        System.out.println(productDto);
+        System.out.println(shippingAddressDto);
+        System.out.println(refundAddressDto);
         adminService.ProductRegister(productDto, shippingAddressDto, refundAddressDto);
-        return "/admin/adminMainPage";
+
+        // ResponseEntity를 사용하여 JSON 형식으로 응답을 반환
+        Map<String, Object> response = new HashMap<>();
+        response.put("message", "Product registered successfully");
+        response.put("status", "success");
+        response.put("redirectUrl", "/admin/adminMainPage");
+
+        // 응답을 JSON 형태로 반환 (HTTP 200 OK)
+        return ResponseEntity.ok(response);
     }
+
 
 }
 
