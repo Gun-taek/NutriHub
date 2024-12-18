@@ -1,11 +1,9 @@
 package com.nutrihub.admin.controller;
 
-import com.nutrihub.admin.dto.ProductCategoryDto;
-import com.nutrihub.admin.dto.ProductDto;
-import com.nutrihub.admin.dto.RefundAddressDto;
-import com.nutrihub.admin.dto.ShippingAddressDto;
+import com.nutrihub.admin.dto.*;
 import com.nutrihub.admin.service.AdminServiceImpl;
 //import org.springframework.security.core.parameters.P;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
@@ -14,6 +12,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.File;
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -41,12 +40,49 @@ public class AdminController {
         // 카테고리 리스트 Model 통해 전달
         List<ProductCategoryDto> CategoryList = adminService.ProductCategoryList();
         model.addAttribute("productCategoryList", CategoryList);
+
+        List<BrandCategoryDto> BrandCategoryList = adminService.BrandCategoryList();
+        model.addAttribute("brandCategoryList",BrandCategoryList);
+
         return "/admin/adminProductRegisterPage";
     }
     //관리 카테고리 종류 리스트로 받아오기
     // 상품 등록 요청 보내기
 
+    @RequestMapping("BrandRegister")
+    public ResponseEntity<?> registerBrand(
+            @RequestParam("brand_korean_name") String brand_korean_name,
+            @RequestParam("brand_english_name") String brand_english_name,
+            @RequestParam("brand_image") MultipartFile brand_image) throws IOException {
+        BrandCategoryDto brandCategoryDto = new BrandCategoryDto();
+        brandCategoryDto.setBrand_korean_name(brand_korean_name);
+        brandCategoryDto.setBrand_english_name(brand_english_name);
 
+        String rootPath = new File("src/main/resources/static").getAbsolutePath();
+        String imagePath = rootPath + "/public/userUploadImages";
+
+        String brandImagePath = rootPath + "/public/image/adminProductRegisterPage/brandLogo";
+
+
+        if (!brand_image.isEmpty()) {
+            UUID uuid = UUID.randomUUID();
+            String brandImageFileName = uuid + "_" + brand_image.getOriginalFilename();
+            File brandImageFile = new File(brandImagePath, brandImageFileName);
+            brand_image.transferTo(brandImageFile);
+            brandCategoryDto.setBrand_logo("/public/image/brandLogo/" + brandImageFileName);
+        }
+
+        try { // 성공 시  Service로 BrandRegister 호출
+            adminService.BrandRegister(brandCategoryDto);
+            return ResponseEntity.ok().body("{\"message\":\"브랜드 등록이 완료되었습니다.\"}");
+            // JSON 형태로 클라이언트에 200 성공 메세지 반환
+
+
+        } catch (Exception e) { // 에러 발생 시
+            e.printStackTrace();
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("{\"message\":\"브랜드 등록 중 오류가 발생했습니다.\"}");
+        }
+    }
     @RequestMapping("ProductRegister")
     public ResponseEntity<Map<String, Object>> ProductRegister(
             @RequestParam("product_category_pk") int product_category_pk,
@@ -58,7 +94,7 @@ public class AdminController {
             @RequestParam("stock") int stock,
             @RequestParam("represent_image") MultipartFile representativeImage,
             @RequestParam("detailed_images") List<MultipartFile> detailedImages,
-            @ModelAttribute
+
             @RequestParam("shipping_address_name") String shipping_address_name,
             @RequestParam("shipping_post_number") String shipping_post_number,
             @RequestParam("shipping_representative_address") String shipping_representative_address,
@@ -73,7 +109,6 @@ public class AdminController {
             @RequestParam("refund_phone_number") String refund_phone_number,
             @RequestParam("refund_extra_phone_number") String refund_extra_phone_number
     ) throws Exception {
-
         ProductDto productDto = new ProductDto();
         productDto.setProduct_category_pk(product_category_pk);
         productDto.setProduct_name(name);
@@ -99,8 +134,12 @@ public class AdminController {
         refundAddressDto.setRefund_phone_number(refund_phone_number);
         refundAddressDto.setRefund_extra_phone_number(refund_extra_phone_number);
 
+
+
         // 서버에 이미지 파일을 저장할 경로
-        String imagePath = System.getProperty("user.dir") + "\\src\\main\\resources\\static\\public\\userUploadImages";
+        String rootPath = new File("src/main/resources/static").getAbsolutePath();
+        String imagePath = rootPath + "/public/userUploadImages";
+
         // 대표 이미지 처리
         if (!representativeImage.isEmpty()) {
             UUID uuid = UUID.randomUUID(); // 대표 이미지용 UUID 생성
@@ -138,14 +177,8 @@ public class AdminController {
                 }
             }
         }
-
-        // 작업 후 리턴 (업로드 완료 후 페이지로 이동)
-        // DTO 설정 후 상품 등록
-        System.out.println(productDto);
-        System.out.println(shippingAddressDto);
-        System.out.println(refundAddressDto);
+        // 서비스에 sql insert 작업 요청
         adminService.ProductRegister(productDto, shippingAddressDto, refundAddressDto);
-
         // ResponseEntity를 사용하여 JSON 형식으로 응답을 반환
         Map<String, Object> response = new HashMap<>();
         response.put("message", "Product registered successfully");

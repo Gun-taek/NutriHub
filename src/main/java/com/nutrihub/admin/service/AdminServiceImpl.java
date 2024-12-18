@@ -1,9 +1,6 @@
 package com.nutrihub.admin.service;
 
-import com.nutrihub.admin.dto.ProductCategoryDto;
-import com.nutrihub.admin.dto.ProductDto;
-import com.nutrihub.admin.dto.RefundAddressDto;
-import com.nutrihub.admin.dto.ShippingAddressDto;
+import com.nutrihub.admin.dto.*;
 import com.nutrihub.admin.mapper.AdminSqlMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -16,6 +13,10 @@ public class AdminServiceImpl {
 
     @Autowired
     private AdminSqlMapper adminSqlMapper;
+
+    public void BrandRegister(BrandCategoryDto brandCategoryDto){
+        adminSqlMapper.BrandRegister(brandCategoryDto);
+    }
     public void ProductRegister(ProductDto productDto, ShippingAddressDto shippingAddressDto, RefundAddressDto refundAddressDto){
         // 상품 등록
         adminSqlMapper.ProductRegister(productDto);  // 이때 productDto에 자동으로 product_pk가 설정됩니다.
@@ -40,6 +41,7 @@ public class AdminServiceImpl {
     public List<ProductCategoryDto> ProductCategoryList(){
         return adminSqlMapper.ProductCategoryList();
     }
+    public List<BrandCategoryDto> BrandCategoryList(){return adminSqlMapper.BrandCategoryList();}
 
 }
 
