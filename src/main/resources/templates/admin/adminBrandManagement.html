@@ -1,10 +1,133 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" th:href="@{/public/css/adminProductRegisterPage.css(version=${#dates.format(#dates.createNow(), 'yyyyMMddHHmmss')})}" />
+    <link rel="stylesheet" th:href="@{/public/css/navbar.css(version=${#dates.format(#dates.createNow(), 'yyyyMMddHHmmss')})}"/>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Single+Day&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100..900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Teko:wght@300..700&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Orbit&display=swap" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
-<body>
+<body style="margin:0; padding:0">
+<div class="container-fluid">
+    <div class="row">
+        <!-- 좌측 네비바 => col-2 부분이다.-->
+        <div class="col-2 m-0" style="padding-left: 0; ">
+            <!-- 좌측 아이콘 -->
+            <div class="row" style="position: sticky; top: 0;" >
+                <div class="col d-flex justify-content-center">
+                    <img th:src="@{/public/image/nutrihubCompanyLogo/MainLogo.png}"  alt=""
+                         style = "height: 15vh; cursor:pointer" th:onclick="|location.href='@{./MainPage}'|">
+                </div>
+            </div>
+            <!-- 관리자 메뉴 바 -->
+            <div class="row" style="padding-left:0.8em; position: sticky; top: 15vh; height:85vh;">
+                <div class="col" style="background-color: #599468; border: solid 0.5em #599468; ">
 
+                    <div class="row admin-menu-item-home" style="margin-top:2em; border-radius: 2em" th:onclick="|location.href='@{./MainPage}'|" >
+                        <div class="col-3 d-flex justify-content-end align-items-center" style="padding:0 0 0 2em;">
+                            <img th:src="@{/public/image/adminMainPage/home_logo.png}" alt="" style="cursor: pointer;width:100%; height: auto;">
+                        </div>
+                        <div class="col-8 d-flex justify-content-center align-items-center text-center">
+                            <p class="noto-sans mb-0" style="color:white; font-size: 1.2em ">홈</p>
+                        </div>
+                    </div>
+
+                    <div class="row admin-menu-item-product" style="margin-top:2em; align-items: center;border-radius: 2em;">
+                        <div class="col-3 d-flex justify-content-end align-items-center" style="padding:0 0 0 2em;">
+                            <img th:src="@{/public/image/adminMainPage/box_logo.png}" alt="" style="width:100%; height: auto;">
+                        </div>
+                        <div class="col-8 d-flex justify-content-center align-items-center text-center">
+                            <p class="noto-sans mb-0" style=" color:white; font-size: 1.2em " >상품 관리</p>
+                        </div>
+                    </div>
+
+                    <div class="row admin-menu-item-delivery" style="margin-top:2em; align-items: center;border-radius: 2em;">
+                        <div class="col-3 d-flex justify-content-end align-items-center" style="padding:0 0 0 2em; border-radius: 2em">
+                            <img th:src="@{/public/image/adminMainPage/truck_logo.png}" alt="" style="width:100%; height: auto;">
+                        </div>
+                        <div class="col-8 d-flex justify-content-center align-items-center text-center">
+                            <p class="noto-sans mb-0" style="color:white; font-size: 1.2em ">배송 관리</p>
+                        </div>
+                    </div>
+
+
+                    <div class="row admin-menu-customer" style="margin-top:2em; align-items: center;border-radius: 2em;">
+                        <div class="col-3 d-flex justify-content-end align-items-center" style="padding:0 0 0 2em; border-radius: 2em">
+                            <img th:src="@{/public/image/adminMainPage/user_logo.png}" alt="" style="width:75%; height: auto;">
+                        </div>
+                        <div class="col-8 d-flex justify-content-center align-items-center text-center">
+                            <p class="noto-sans mb-0" style="color:white; font-size: 1.2em ">고객 관리</p>
+                        </div>
+                    </div>
+
+
+                    <div class="row admin-menu-question" style="margin-top:14em;border-radius: 2em;">
+                        <div class="col-3 d-flex justify-content-end align-items-center" style="padding:0 0 0 2em; border-radius: 2em">
+                            <img th:src="@{/public/image/adminMainPage/questionMark_logo.png}" alt="" style="width:75%; height: auto;">
+                        </div>
+                        <div class="col-8 d-flex justify-content-center align-items-center text-center">
+                            <p class="noto-sans mb-0" style="color:white; font-size: 1.2em ">사용자 지정</p>
+                        </div>
+                    </div>
+
+
+                    <div class="row admin-menu-setting" style="margin-top:2em; align-items: center;border-radius: 2em;">
+                        <div class="col-3 d-flex justify-content-end align-items-center" style="padding:0 0 0 2em; border-radius: 2em">
+                            <img th:src="@{/public/image/adminMainPage/setting_logo.png}" alt="" style="width:75%; height: auto;">
+                        </div>
+                        <div class="col-8 d-flex justify-content-center align-items-center text-center">
+                            <p class="noto-sans mb-0" style="color:white; font-size: 1.2em ">설정</p>
+                        </div>
+                    </div>
+
+                    <div class="row" style="height: 5em"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 네비바 끝 -->
+        <!-- 본문 -->
+        <div class="col">
+            <div class="row" style="height:15vh;">
+                <div class="col-2 d-flex justify-content-end align-items-center">
+
+                    <img th:src="@{/public/image/adminMainPage/store_logo.png}" alt="" style="height:3.5vh">
+                </div>
+                <div class="col-3 d-flex align-items-center justify-content-start">
+                    <p class="orbit-regular mb-0" style="color:darkgray; font-size:1.2em; font-weight: 500;">상품 관리</p>
+                    <p class="orbit-regular mb-0" style="font-weight: bold;font-size:1.2em">&nbsp;&nbsp; > &nbsp;&nbsp;</p>
+                    <p class="orbit-regular mb-0" style="font-size:1.2em"> 상품 등록 </p>
+                </div>
+
+                <div class="col d-flex justify-content-end align-items-center">
+                    <span class="orbit-regular mb-0" style="font-size:1.2em; color:darkgray"> 로그아웃</span>&nbsp;
+                    <img class="logout-button"th:src="@{/public/image/adminMainPage/logout_logo.png}" alt="" style="height:3.5vh">
+                </div>
+                <div class="col-1"></div>
+            </div>
+
+            <!-- 구분선 -->
+            <div class="row" style="border-top: solid 0.2em gray; background-color: #F1F3F5">
+                <div class="col" style="padding:2em;">
+                    <div class="row border" style="background-color: white;">
+                        <div class="col p-4">
+                            <span class="noto-sans" style="font-size: 1.6em ; font-weight: bold; color:darkgreen">브랜드 관리</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+</div>
 </body>
 </html>

@@ -1,5 +1,4 @@
 package com.nutrihub.admin.controller;
-
 import com.nutrihub.admin.dto.*;
 import com.nutrihub.admin.service.AdminServiceImpl;
 //import org.springframework.security.core.parameters.P;
@@ -10,16 +9,13 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
-
 import java.io.File;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.UUID;
-
 import static org.apache.coyote.http11.Constants.a;
-
 @Controller
 @RequestMapping("/NutriHub/Admin/*")
 public class AdminController {
@@ -48,7 +44,6 @@ public class AdminController {
     }
     //관리 카테고리 종류 리스트로 받아오기
     // 상품 등록 요청 보내기
-
     @RequestMapping("BrandRegister")
     public ResponseEntity<?> registerBrand(
             @RequestParam("brand_korean_name") String brand_korean_name,
@@ -133,9 +128,6 @@ public class AdminController {
         refundAddressDto.setRefund_detail_address(refund_detail_address);
         refundAddressDto.setRefund_phone_number(refund_phone_number);
         refundAddressDto.setRefund_extra_phone_number(refund_extra_phone_number);
-
-
-
         // 서버에 이미지 파일을 저장할 경로
         String rootPath = new File("src/main/resources/static").getAbsolutePath();
         String imagePath = rootPath + "/public/userUploadImages";
@@ -188,8 +180,10 @@ public class AdminController {
         // 응답을 JSON 형태로 반환 (HTTP 200 OK)
         return ResponseEntity.ok(response);
     }
-
-
+    @RequestMapping("AdminBrandManagement")
+    public String AdminBrandManagement(){
+        return "/admin/adminBrandManagement";
+    }
 }
 
 

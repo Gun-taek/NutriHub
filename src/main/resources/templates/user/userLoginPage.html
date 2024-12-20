@@ -10,48 +10,17 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Nothing+You+Could+Do&display=swap" rel="stylesheet">
-
     <title>NutriHubUserLoginPage</title>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script>
 
-
-        $(document).ready(function(){
-
-
-            $('#IdForm').submit(function(event) {
-                event.preventDefault();
-
-                const formData = {
-                    user_id: $('#id').val(),
-                    user_pw: $('#pw').val()
-                };
-
-                $.ajax({
-                    type: 'POST',
-                    url: './loginProcess',
-                    data: JSON.stringify(formData),
-                    contentType: 'application/json; charset=utf-8',
-                    success: function(response) {
-                        alert('로그인이 완료 되었습니다.');
-                        location.href = "./MainPage";
-                    },
-                    error: function(xhr, status, error) {
-                        alert('로그인 실패');
-                        location.href = "./userLoginPage";
-                    }
-                });
-            });
-
-        });
-
-    </script>
-
+    <!-- KAKAO -->
+    <script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
+    <!-- 카카오 로그인 웹 어플리케이션 Key 갖고오기-->
+    <script>window.Kakao.init("1260258c8140561505da2bbda62a3157");</script>
     <style>
     </style>
 </head>
 <body style="margin:0; padding:0">
-
 <!-- 로고 -->
 <div class="row mt-5 m-0">
     <div class="col-4"></div>
@@ -106,7 +75,10 @@
 
             <div class ="row m-3">
                 <div class="col w-100 d-flex justify-content-center" >
-                    <img class="" th:src="@{/public/image/userLoginPage/kakao_login_large_wide.png}" style="height:3.3em; border-radius: 1em; cursor: pointer; width:45%" >
+                    <img class="" th:src="@{/public/image/userLoginPage/kakao_login_large_wide.png}"
+                         style="height:3.3em; border-radius: 1em; cursor: pointer; width:45%"
+                         onclick="kakaoLogin()"
+                    >
                 </div>
             </div>
             <div class ="row mt-5">
@@ -123,18 +95,53 @@
                     <img th:src="@{/public/image/userLoginPage/facebook_login_circle.png}" style="height:3.5em; border-radius: 1em; cursor: pointer" >
                 </div>
             </div>
-
-
-
         </div>
         <div class="col"></div>
-
-
     </div>
-
 </form>
 
 <!-- 부트 스트랩 -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+<script>
+    $(document).ready(function(){
+        $('#IdForm').submit(function(event) {
+            event.preventDefault();
+            const formData = {
+                user_id: $('#id').val(),
+                user_pw: $('#pw').val()
+            };
+            $.ajax({
+                type: 'POST',
+                url: './loginProcess',
+                data: JSON.stringify(formData),
+                contentType: 'application/json; charset=utf-8',
+                success: function(response) {
+                    alert('로그인이 완료 되었습니다.');
+                    location.href = "./MainPage";
+                },
+                error: function(xhr, status, error) {
+                    alert('로그인 실패');
+                    location.href = "./userLoginPage";
+                }
+            });
+        });
+    })
+    // 문서에 있는 내용 응용
+    function kakaoLogin() {
+        window.Kakao.Auth.login({
+            scope:'profile_nickname,account_email',
+            success: function(authObj){ // scope로 받아올 범위 설정
+                console.log(authObj); // 받아온 Object console로 출력
+                window.Kakao.API.request({ // 로그인 된 상태에서 데이터 가져오기 -> email 같은
+                        url:'/v2/user/me',  // 현재 로그인 한 사용자의 정보 가져오기
+                        success: res => {
+                        const kakao_account = res.kakao_account;
+                        console.log(kakao_account);
+                    }
+                });
+            }
+        })
+    }
+</script>
 </body>
 </html>
